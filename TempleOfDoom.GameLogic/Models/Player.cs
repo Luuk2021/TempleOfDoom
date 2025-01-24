@@ -1,48 +1,40 @@
-﻿using TempleOfDoom.GameLogic.Services;
+﻿using System.Numerics;
+using TempleOfDoom.GameLogic.Services;
 
 namespace TempleOfDoom.GameLogic.Models
 {
-    public class Player : Observable<ILocatable>, IWalkable
+    public class Player : Observable<((int x, int y) oldPos, ILocatable)>, IWalkable, ICollidable
     {
-        private int _x;
-        private int _y;
-
-        public int X
+        private readonly int _speed = 1;
+        private (int x, int y) _position;
+        public (int x, int y) Position
         {
-            get => _x;
+            get => _position;
             set
             {
-                _x = value;
-                Notify(this);
-            }
-        }
-        public int Y
-        {
-            get => _y;
-            set
-            {
-                _y = value;
-                Notify(this);
+                var old_position = _position;
+                _position = value;
+                Notify((old_position, this));
             }
         }
 
-        public void Move(Services.GameAction action)
+        public Action<ICollidable> OnCollision => c => {
+        };
+
+        public void TryMove(Direction direction, Func<(int x, int y), bool> canMoveTo)
         {
-            if(action == Services.GameAction.MoveUp)
+            var newPos = direction switch
             {
-                Y--;
-            }
-            else if (action == Services.GameAction.MoveDown)
+                Direction.Up => (Position.x, Position.y - _speed),
+                Direction.Down => (Position.x, Position.y + _speed),
+                Direction.Left => (Position.x - _speed, Position.y),
+                Direction.Right => (Position.x + _speed, Position.y),
+                _ => Position
+            };
+
+            if (canMoveTo(newPos))
             {
-                Y++;
-            }
-            else if (action == Services.GameAction.MoveLeft)
-            {
-                X--;
-            }
-            else if (action == Services.GameAction.MoveRight)
-            {
-                X++;
+                Position = newPos;
             }
         }
     }

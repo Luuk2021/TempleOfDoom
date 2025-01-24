@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TempleOfDoom.GameLogic\TempleOfDoom.GameLogic.csproj" />
+    <ProjectReference Include="..\TempleOfDoom.UI\TempleOfDoom.UI.csproj" />
   </ItemGroup>
 
 </Project>

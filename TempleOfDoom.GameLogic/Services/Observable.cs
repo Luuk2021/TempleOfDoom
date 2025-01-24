@@ -19,8 +19,8 @@
         }
         private class Unsubscriber : IDisposable
         {
-            private System.Action _unsubscribe;
-            public Unsubscriber(System.Action unsubscribe)
+            private Action _unsubscribe;
+            public Unsubscriber(Action unsubscribe)
             {
                 _unsubscribe = unsubscribe;
             }

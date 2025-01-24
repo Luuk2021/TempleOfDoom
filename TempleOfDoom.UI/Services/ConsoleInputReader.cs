@@ -2,17 +2,17 @@
 
 namespace TempleOfDoom.UI
 {
-    public class ConsoleInputParser : IInputReader
+    public class ConsoleInputReader : IInputReader
     {
         Dictionary<ConsoleKey, GameAction> _keyMappings = new()
         {
-            { ConsoleKey.W, GameAction.MoveUp },
-            { ConsoleKey.S, GameAction.MoveDown },
-            { ConsoleKey.A, GameAction.MoveLeft },
-            { ConsoleKey.D, GameAction.MoveRight },
-            { ConsoleKey.Q, GameAction.Quit }
+            { ConsoleKey.UpArrow, GameAction.MoveUp },
+            { ConsoleKey.DownArrow, GameAction.MoveDown },
+            { ConsoleKey.LeftArrow, GameAction.MoveLeft },
+            { ConsoleKey.RightArrow, GameAction.MoveRight },
+            { ConsoleKey.Escape, GameAction.Quit }
         };
-        public GameAction GetNextAction()
+        public GameAction GetNextInput()
         {
             if (Console.KeyAvailable)
             {

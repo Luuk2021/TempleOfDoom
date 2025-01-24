@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TempleOfDoom.GameLogic.Models
+﻿namespace TempleOfDoom.GameLogic.Models
 {
     public interface IWalkable : ILocatable
     {
-        void Move(Services.GameAction action);
+        void TryMove(Direction direction, Func<(int x, int y), bool> canMoveTo);
+    }
+    public enum Direction
+    {
+        Up,
+        Down,
+        Left,
+        Right
     }
 }

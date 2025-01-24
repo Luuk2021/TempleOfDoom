@@ -1,4 +1,8 @@
 ﻿using TempleOfDoom.GameLogic;
+using TempleOfDoom.UI;
+using TempleOfDoom.UI.Services;
 
-GameLoop gameLoop = new GameLoop();
+ConsoleInputReader consoleInputReader = new();
+ConsoleRenderer consoleRenderer = new();
+GameLoop gameLoop = new(consoleRenderer, consoleInputReader);
 gameLoop.Run();

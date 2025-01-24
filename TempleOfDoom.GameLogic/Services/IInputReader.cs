@@ -2,7 +2,7 @@
 {
     public interface IInputReader
     {
-        GameAction GetNextAction();
+        GameAction GetNextInput();
     }
     public enum GameAction
     {
