@@ -13,6 +13,8 @@ namespace TempleOfDoom.GameLogic
         private List<Room> _rooms;
         private Room _currentRoom;
         private IRenderer _renderer;
+        
+        HashSet<ICollidable> _previousCollisions = [];
         private List<ILocatable> _toRemove;
 
         private Dictionary<GameAction, Action> _actions;
@@ -23,7 +25,7 @@ namespace TempleOfDoom.GameLogic
             _rooms = [];
             _toRemove = [];
 
-            BuildRooms(10, 5);
+            BuildRooms(6, 5);
 
             _currentRoom = _rooms.First();
 
@@ -40,8 +42,7 @@ namespace TempleOfDoom.GameLogic
         public void BuildRooms(int width, int height)
         {
             var room = new Room(1);
-            var player = new Player();
-            player.Position = (1, 1);
+            var player = new Player(new BaseCollidable(1,1), 3);
             _player = player;
             room.AddLocatable(player);
 
@@ -74,6 +75,34 @@ namespace TempleOfDoom.GameLogic
             boobyTrap2 = new DisappearingBoobyTrap(boobyTrap2, 1, ()=>_toRemove.Add(boobyTrap2));
             room.AddLocatable(boobyTrap2);
 
+            ICollidable sankaraStone = new BaseCollidable(4, 2);
+            sankaraStone = new SankaraStone(sankaraStone, () => _toRemove.Add(sankaraStone));
+            room.AddLocatable(sankaraStone);
+
+            ICollidable sankaraStone2 = new BaseCollidable(4, 2);
+            sankaraStone2 = new SankaraStone(sankaraStone2, () => _toRemove.Add(sankaraStone2));
+            room.AddLocatable(sankaraStone2);
+
+            ICollidable sankaraStone3 = new BaseCollidable(4, 2);
+            sankaraStone3 = new SankaraStone(sankaraStone3, () => _toRemove.Add(sankaraStone3));
+            room.AddLocatable(sankaraStone3);
+
+            ICollidable sankaraStone4 = new BaseCollidable(4, 2);
+            sankaraStone4 = new SankaraStone(sankaraStone4, () => _toRemove.Add(sankaraStone4));
+            room.AddLocatable(sankaraStone4);
+
+            ICollidable sankaraStone5 = new BaseCollidable(4, 2);
+            sankaraStone5 = new SankaraStone(sankaraStone5, () => _toRemove.Add(sankaraStone5));
+            room.AddLocatable(sankaraStone5);
+
+            ICollidable sankaraStone6 = new BaseCollidable(4, 2);
+            sankaraStone6 = new SankaraStone(sankaraStone6, () => _toRemove.Add(sankaraStone6));
+            room.AddLocatable(sankaraStone6);
+
+            ICollidable sankaraStone7 = new BaseCollidable(4, 3);
+            sankaraStone7 = new SankaraStone(sankaraStone7, () => _toRemove.Add(sankaraStone7));
+            room.AddLocatable(sankaraStone7);
+
             _rooms.Add(room);
         }
         public void Run()
@@ -81,32 +110,40 @@ namespace TempleOfDoom.GameLogic
             _isRunning = true;
             _renderer.Display(_currentRoom);
 
-            HashSet<ICollidable> previousCollisions = new();
-
             while (_isRunning)
             {
                 var action = _inputReader.GetNextInput();
                 _actions[action]();
 
-                var playerCollisions = _currentRoom.CheckCollisions(_player);
-                var newCollisions = playerCollisions.Except(previousCollisions);
-               
-                foreach (var collision in newCollisions)
-                {
-                    _player.OnCollision(collision);
-                    collision.OnCollision(_player);
-                }
-                previousCollisions = playerCollisions.ToHashSet();
-                foreach (var locatable in _toRemove)
-                {
-                    _currentRoom.RemoveLocatable(locatable);
-                    if (locatable is ICollidable collidable)
-                    {
-                        previousCollisions.Remove(collidable);
-                    }
-                }
-                _toRemove.Clear();  
+                HandleCollisionsWithPlayer();
+                HandleRemoves();
             }
         }
+        private void HandleRemoves()
+        {
+            foreach (var locatable in _toRemove)
+            {
+                _currentRoom.RemoveLocatable(locatable);
+                if (locatable is ICollidable collidable)
+                {
+                    _previousCollisions.Remove(collidable);
+                }
+            }
+            _toRemove.Clear();
+        }
+        private void HandleCollisionsWithPlayer()
+        {
+            var playerCollisions = _currentRoom.CheckCollisions(_player);
+            var newCollisions = playerCollisions.Except(_previousCollisions);
+
+            foreach (var collision in newCollisions)
+            {
+                _player.OnCollision(collision);
+                collision.OnCollision(_player);
+            }
+            _previousCollisions = playerCollisions.ToHashSet();
+
+        }
+  
     }
 }

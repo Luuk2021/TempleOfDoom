@@ -1,4 +1,5 @@
 ﻿using TempleOfDoom.GameLogic.Models;
+using TempleOfDoom.GameLogic.Models.Decorators;
 using TempleOfDoom.GameLogic.Services;
 using TempleOfDoom.UI.Views;
 
@@ -20,6 +21,9 @@ namespace TempleOfDoom.UI.Services
             foreach (var player in players) {
                 var healthView = new HealthView(player, offset);
                 offset.y += healthView.Display();
+
+                var inventoryView = new InventoryView(player, offset, room.Width);
+                offset.y += inventoryView.Display();
             }
         }
     }

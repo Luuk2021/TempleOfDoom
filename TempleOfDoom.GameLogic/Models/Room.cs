@@ -4,7 +4,7 @@ using TempleOfDoom.GameLogic.Services;
 
 namespace TempleOfDoom.GameLogic.Models
 {
-    public class Room : Observable<(bool isAdded,ILocatable)>
+    public class Room : Observable<(bool isAdded, ILocatable)>
     {
         public int Id { get; set; }
         private List<ILocatable> _locatables;
@@ -14,6 +14,9 @@ namespace TempleOfDoom.GameLogic.Models
             Id = id;
             _locatables = new List<ILocatable>();
         }
+
+        public int Width => _locatables.Max(l => l.Position.x);
+        public int Height => _locatables.Max(l => l.Position.y);
 
         public void AddLocatable(ILocatable locatable)
         {

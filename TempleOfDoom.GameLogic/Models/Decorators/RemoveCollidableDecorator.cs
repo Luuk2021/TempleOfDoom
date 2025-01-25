@@ -11,9 +11,9 @@ namespace TempleOfDoom.GameLogic.Models.Decorators
             _removeThisObjectCallBack();
         };
         }
-        public RemoveCollidableDecorator(ICollidable wrapee, Action removeThisObjectCallBack) : base(wrapee)
+        public RemoveCollidableDecorator(ICollidable wrapee, Action removeCallBack) : base(wrapee)
         {
-            _removeThisObjectCallBack = removeThisObjectCallBack;
+            _removeThisObjectCallBack = removeCallBack;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace TempleOfDoom.UI.Views
 {
     public class HealthView : IObserver<int>
     {
-        private (int x, int y) _offset = (0, 0);
+        private (int x, int y) _offset;
         private int _lives;
         public HealthView(IDamageable healthObservable, (int x, int y) offset)
         {

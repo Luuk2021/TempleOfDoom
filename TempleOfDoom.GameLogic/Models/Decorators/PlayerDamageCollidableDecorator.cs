@@ -7,6 +7,7 @@ namespace TempleOfDoom.GameLogic.Models.Decorators
         public int Damage { get; }
         public override Action<ICollidable> OnCollision { get => c =>
         {
+            _wrapee.OnCollision(c);
             if (c is Player player)
             {
                 player.TakeDamage(Damage);
