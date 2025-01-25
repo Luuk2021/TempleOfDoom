@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using TempleOfDoom.GameLogic.Models;
+using TempleOfDoom.GameLogic.Models.Interfaces;
 using TempleOfDoom.GameLogic.Services;
 
 namespace TempleOfDoom.GameLogic
@@ -25,7 +26,7 @@ namespace TempleOfDoom.GameLogic
             _inputReader = inputReader;
             _rooms = [];
 
-            BuildRooms(5, 7);
+            BuildRooms(10, 5);
 
             _currentRoom = _rooms.First();
 

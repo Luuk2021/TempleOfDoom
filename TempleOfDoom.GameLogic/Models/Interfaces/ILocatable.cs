@@ -1,4 +1,4 @@
-﻿namespace TempleOfDoom.GameLogic.Models
+﻿namespace TempleOfDoom.GameLogic.Models.Interfaces
 {
     public interface ILocatable
     {

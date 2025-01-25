@@ -1,4 +1,6 @@
-﻿namespace TempleOfDoom.GameLogic.Models
+﻿using TempleOfDoom.GameLogic.Models.Interfaces;
+
+namespace TempleOfDoom.GameLogic.Models
 {
     public class Wall : ILocatable
     {

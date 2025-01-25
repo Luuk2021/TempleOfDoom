@@ -10,7 +10,7 @@
             return new Unsubscriber(()=>_observers.Remove(observer));
         }
 
-        protected void Notify(T value)
+        public void Notify(T value)
         {
             foreach (var observer in _observers)
             {

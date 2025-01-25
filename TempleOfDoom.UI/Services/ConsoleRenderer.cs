@@ -6,11 +6,21 @@ namespace TempleOfDoom.UI.Services
 {
     public class ConsoleRenderer : IRenderer
     {
-        private (int x, int y) _roomOffset = (0, 0);
         public void Display(Room room)
         {
-            var roomView = new RoomView(room, _roomOffset);
-            roomView.Display();
+            Console.Clear();
+            var offset = (x:3, y:0);
+
+            var roomView = new RoomView(room.Locatables, offset);
+            offset.y += roomView.Display();
+
+            offset.y += 3;
+
+            var players = room.Locatables.OfType<Player>();
+            foreach (var player in players) {
+                var healthView = new HealthView(player, offset);
+                offset.y += healthView.Display();
+            }
         }
     }
 }

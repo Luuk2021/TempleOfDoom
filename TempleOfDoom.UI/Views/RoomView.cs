@@ -1,5 +1,5 @@
 ﻿using TempleOfDoom.GameLogic.Models;
-using TempleOfDoom.GameLogic.Services;
+using TempleOfDoom.GameLogic.Models.Interfaces;
 using TempleOfDoom.UI.Services;
 using TempleOfDoom.UI.Views.TileViews;
 
@@ -11,49 +11,29 @@ namespace TempleOfDoom.UI.Views
         private (int x, int y) _offset;
         private TileViewFactory _tileViewFactory;
 
-        public RoomView(Room room, (int x, int y) offset)
+        public RoomView(IList<ILocatable> locatables, (int x, int y) offset)
         {
             _tileViewFactory = new();
             _tileViews = [];
+            _offset = offset;
 
-            SetLocatables(room.Locatables);
+            SetLocatables(locatables);
         }
 
-        public void Display()
+        public int Display()
         {
             foreach (var tileViewDictionary in _tileViews.Values)
             {
                 tileViewDictionary.Values.OrderByDescending(t => t.Layer).First().Display();
             }
+            return _tileViews.Keys.Select(pos => pos.y).Max();
         }
-
-        //private void SetWalls(Room room)
-        //{
-        //    for (int x = 0; x < room.Width + 2; x++)
-        //    {
-        //        var tileViewUpper = _tileViewFactory.GetTileView("wall");
-        //        tileViewUpper.ScreenPosition = (x + _offset.x, _offset.y);
-        //        _tileViews.Add(tileViewUpper);
-        //        var tileViewLower = _tileViewFactory.GetTileView("wall");
-        //        tileViewLower.ScreenPosition = (x + _offset.x, room.Height + _offset.y + 1);
-        //        _tileViews.Add(tileViewLower);
-        //    }
-        //    for (int y = 0; y < room.Height; y++)
-        //    {
-        //        var tileViewLeft = _tileViewFactory.GetTileView("wall");
-        //        tileViewLeft.ScreenPosition = (_offset.x, y + _offset.y + 1);
-        //        _tileViews.Add(tileViewLeft);
-        //        var tileViewRight = _tileViewFactory.GetTileView("wall");
-        //        tileViewRight.ScreenPosition = (room.Width + _offset.x + 1, y + _offset.y + 1);
-        //        _tileViews.Add(tileViewRight);
-        //    }
-        //}
 
         private void SetLocatables(IList<ILocatable> locatables)
         {
             foreach (var locatable in locatables)
             {
-                if (locatable is Observable<((int x, int y) oldPos, ILocatable locatable)> observableLocatable)
+                if (locatable is IObservable<((int x, int y) oldPos, ILocatable locatable)> observableLocatable)
                 {
                     observableLocatable.Subscribe(this);
                 }
@@ -67,13 +47,13 @@ namespace TempleOfDoom.UI.Views
         private void AddTileView(TileView tileView, ILocatable locatable)
         {
             tileView.ScreenPosition = (locatable.Position.x + _offset.x, locatable.Position.y + _offset.y);
-            if (_tileViews.TryGetValue(tileView.ScreenPosition, out var tileViewDictionary))
+            if (_tileViews.TryGetValue(locatable.Position, out var tileViewDictionary))
             {
                 tileViewDictionary.Add(locatable, tileView);
             }
             else
             {
-                _tileViews.Add(tileView.ScreenPosition, new Dictionary<ILocatable, TileView> { { locatable, tileView } });
+                _tileViews.Add(locatable.Position, new Dictionary<ILocatable, TileView> { { locatable, tileView } });
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using TempleOfDoom.GameLogic.Models.Interfaces;
 using TempleOfDoom.GameLogic.Services;
 
 namespace TempleOfDoom.GameLogic.Models
