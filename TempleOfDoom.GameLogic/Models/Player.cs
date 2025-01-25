@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Numerics;
-using TempleOfDoom.GameLogic.Models.Interfaces;
+﻿using TempleOfDoom.GameLogic.Models.Interfaces;
 using TempleOfDoom.GameLogic.Services;
 
 namespace TempleOfDoom.GameLogic.Models

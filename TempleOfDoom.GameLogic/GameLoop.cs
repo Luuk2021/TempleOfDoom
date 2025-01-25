@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using TempleOfDoom.GameLogic.Models;
+﻿using TempleOfDoom.GameLogic.Models;
+using TempleOfDoom.GameLogic.Models.Decorators;
 using TempleOfDoom.GameLogic.Models.Interfaces;
 using TempleOfDoom.GameLogic.Services;
 
@@ -18,6 +13,7 @@ namespace TempleOfDoom.GameLogic
         private List<Room> _rooms;
         private Room _currentRoom;
         private IRenderer _renderer;
+        private List<ILocatable> _toRemove;
 
         private Dictionary<GameAction, Action> _actions;
 
@@ -25,6 +21,7 @@ namespace TempleOfDoom.GameLogic
             _renderer = renderer;
             _inputReader = inputReader;
             _rooms = [];
+            _toRemove = [];
 
             BuildRooms(10, 5);
 
@@ -46,29 +43,36 @@ namespace TempleOfDoom.GameLogic
             var player = new Player();
             player.Position = (1, 1);
             _player = player;
-            room.Locatables.Add(player);
+            room.AddLocatable(player);
 
             for (int x = 0; x < width; x++)
             {
                 var wall = new Wall();
                 wall.Position = (x, 0);
-                room.Locatables.Add(wall);
+                room.AddLocatable(wall);
 
                 wall = new Wall();
                 wall.Position = (x, height - 1);
-                room.Locatables.Add(wall);
+                room.AddLocatable(wall);
             }
 
             for (int y = 0; y < height; y++)
             {
                 var wall = new Wall();
                 wall.Position = (0, y);
-                room.Locatables.Add(wall);
+                room.AddLocatable(wall);
 
                 wall = new Wall();
                 wall.Position = (width - 1, y);
-                room.Locatables.Add(wall);
+                room.AddLocatable(wall);
             }
+
+            ICollidable boobyTrap = new Boobytrap(new BaseCollidable(2, 2), 1);
+            room.AddLocatable(boobyTrap);
+
+            ICollidable boobyTrap2 = new BaseCollidable(3, 3);
+            boobyTrap2 = new DisappearingBoobyTrap(boobyTrap2, 1, ()=>_toRemove.Add(boobyTrap2));
+            room.AddLocatable(boobyTrap2);
 
             _rooms.Add(room);
         }
@@ -76,17 +80,32 @@ namespace TempleOfDoom.GameLogic
         {
             _isRunning = true;
             _renderer.Display(_currentRoom);
+
+            HashSet<ICollidable> previousCollisions = new();
+
             while (_isRunning)
             {
                 var action = _inputReader.GetNextInput();
                 _actions[action]();
 
                 var playerCollisions = _currentRoom.CheckCollisions(_player);
-                foreach (var collision in playerCollisions)
+                var newCollisions = playerCollisions.Except(previousCollisions);
+               
+                foreach (var collision in newCollisions)
                 {
                     _player.OnCollision(collision);
                     collision.OnCollision(_player);
                 }
+                previousCollisions = playerCollisions.ToHashSet();
+                foreach (var locatable in _toRemove)
+                {
+                    _currentRoom.RemoveLocatable(locatable);
+                    if (locatable is ICollidable collidable)
+                    {
+                        previousCollisions.Remove(collidable);
+                    }
+                }
+                _toRemove.Clear();  
             }
         }
     }

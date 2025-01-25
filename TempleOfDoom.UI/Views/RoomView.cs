@@ -5,19 +5,21 @@ using TempleOfDoom.UI.Views.TileViews;
 
 namespace TempleOfDoom.UI.Views
 {
-    public class RoomView : IObserver<((int x, int y) oldPos, ILocatable locatable)>, IObserver<List<ILocatable>>
+    public class RoomView : IObserver<((int x, int y) oldPos, ILocatable locatable)>, IObserver<(bool isAdded, ILocatable locatable)>
     {
         private Dictionary<(int x, int y), Dictionary<ILocatable, TileView>> _tileViews;
         private (int x, int y) _offset;
         private TileViewFactory _tileViewFactory;
 
-        public RoomView(IList<ILocatable> locatables, (int x, int y) offset)
+        public RoomView(Room room, (int x, int y) offset)
         {
             _tileViewFactory = new();
             _tileViews = [];
             _offset = offset;
 
-            SetLocatables(locatables);
+            room.Subscribe(this);
+
+            SetLocatables(room.GetLocatables());
         }
 
         public int Display()
@@ -29,7 +31,7 @@ namespace TempleOfDoom.UI.Views
             return _tileViews.Keys.Select(pos => pos.y).Max();
         }
 
-        private void SetLocatables(IList<ILocatable> locatables)
+        private void SetLocatables(IEnumerable<ILocatable> locatables)
         {
             foreach (var locatable in locatables)
             {
@@ -77,11 +79,35 @@ namespace TempleOfDoom.UI.Views
             AddTileView(tileView, value.locatable);
             _tileViews[value.locatable.Position].Values.OrderByDescending(t => t.Layer).First().Display();
         }
-        public void OnNext(List<ILocatable> value)
+        public void OnNext((bool isAdded, ILocatable locatable) value)
         {
-            _tileViewFactory = new();
-            SetLocatables(value);
-            Display();
+            if (value.isAdded)
+            {
+                if (value.locatable is IObservable<((int x, int y) oldPos, ILocatable locatable)> observableLocatable)
+                {
+                    observableLocatable.Subscribe(this);
+                }
+                var locatableName = value.locatable.GetType().Name.ToLower();
+                var tileView = _tileViewFactory.GetTileView(locatableName);
+                AddTileView(tileView, value.locatable);
+                _tileViews[value.locatable.Position].Values.OrderByDescending(t => t.Layer).First().Display();
+            }
+            else
+            {
+                var positionTiles = _tileViews[value.locatable.Position];
+                var tileView = positionTiles[value.locatable];
+                positionTiles.Remove(value.locatable);
+                if (positionTiles.Count == 0)
+                {
+                    _tileViews.Remove(value.locatable.Position);
+                    Console.SetCursorPosition(value.locatable.Position.x + _offset.x, value.locatable.Position.y + _offset.y);
+                    Console.Write(' ');
+                }
+                else
+                {
+                    positionTiles.Values.OrderByDescending(t => t.Layer).First().Display();
+                }
+            }
         }
         public void OnCompleted()
         {
