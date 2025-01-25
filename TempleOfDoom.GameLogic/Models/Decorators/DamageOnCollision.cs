@@ -2,22 +2,21 @@
 
 namespace TempleOfDoom.GameLogic.Models.Decorators
 {
-    public class PlayerDamageCollidableDecorator : CollidableDecorator
+    public class DamageOnCollision : CollidableDecorator
     {
         public int Damage { get; }
         public override Action<ICollidable> OnCollision { get => c =>
         {
             _wrapee.OnCollision(c);
-            if (c is Player player)
+            if (c is IDamageable damageable)
             {
-                player.TakeDamage(Damage);
+                damageable.TakeDamage(Damage);
             }
         };
         }
-        public PlayerDamageCollidableDecorator(ICollidable wrapee, int damage): base(wrapee)
+        public DamageOnCollision(ICollidable wrapee, int damage): base(wrapee)
         {
             Damage = damage;
         }
     }
-
 }

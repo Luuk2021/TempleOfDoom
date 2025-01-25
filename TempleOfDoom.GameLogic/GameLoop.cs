@@ -72,35 +72,35 @@ namespace TempleOfDoom.GameLogic
             room.AddLocatable(boobyTrap);
 
             ICollidable boobyTrap2 = new BaseCollidable(3, 3);
-            boobyTrap2 = new DisappearingBoobyTrap(boobyTrap2, 1, ()=>_toRemove.Add(boobyTrap2));
+            boobyTrap2 = new DisappearingBoobyTrap(boobyTrap2, 1, (c)=>_toRemove.Add(boobyTrap2));
             room.AddLocatable(boobyTrap2);
 
             ICollidable sankaraStone = new BaseCollidable(4, 2);
-            sankaraStone = new SankaraStone(sankaraStone, () => _toRemove.Add(sankaraStone));
+            sankaraStone = new SankaraStone(sankaraStone, (c) => _toRemove.Add(sankaraStone));
             room.AddLocatable(sankaraStone);
 
             ICollidable sankaraStone2 = new BaseCollidable(4, 2);
-            sankaraStone2 = new SankaraStone(sankaraStone2, () => _toRemove.Add(sankaraStone2));
+            sankaraStone2 = new SankaraStone(sankaraStone2, (c) => _toRemove.Add(sankaraStone2));
             room.AddLocatable(sankaraStone2);
 
             ICollidable sankaraStone3 = new BaseCollidable(4, 2);
-            sankaraStone3 = new SankaraStone(sankaraStone3, () => _toRemove.Add(sankaraStone3));
+            sankaraStone3 = new SankaraStone(sankaraStone3, (c) => _toRemove.Add(sankaraStone3));
             room.AddLocatable(sankaraStone3);
 
             ICollidable sankaraStone4 = new BaseCollidable(4, 2);
-            sankaraStone4 = new SankaraStone(sankaraStone4, () => _toRemove.Add(sankaraStone4));
+            sankaraStone4 = new SankaraStone(sankaraStone4, (c) => _toRemove.Add(sankaraStone4));
             room.AddLocatable(sankaraStone4);
 
             ICollidable sankaraStone5 = new BaseCollidable(4, 2);
-            sankaraStone5 = new SankaraStone(sankaraStone5, () => _toRemove.Add(sankaraStone5));
+            sankaraStone5 = new SankaraStone(sankaraStone5, (c) => _toRemove.Add(sankaraStone5));
             room.AddLocatable(sankaraStone5);
 
             ICollidable sankaraStone6 = new BaseCollidable(4, 2);
-            sankaraStone6 = new SankaraStone(sankaraStone6, () => _toRemove.Add(sankaraStone6));
+            sankaraStone6 = new SankaraStone(sankaraStone6, (c) => _toRemove.Add(sankaraStone6));
             room.AddLocatable(sankaraStone6);
 
             ICollidable sankaraStone7 = new BaseCollidable(4, 3);
-            sankaraStone7 = new SankaraStone(sankaraStone7, () => _toRemove.Add(sankaraStone7));
+            sankaraStone7 = new SankaraStone(sankaraStone7, (c) => _toRemove.Add(sankaraStone7));
             room.AddLocatable(sankaraStone7);
 
             _rooms.Add(room);

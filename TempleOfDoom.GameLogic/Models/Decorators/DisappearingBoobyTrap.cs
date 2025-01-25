@@ -2,9 +2,9 @@
 
 namespace TempleOfDoom.GameLogic.Models.Decorators
 {
-    public class DisappearingBoobyTrap : RemoveCollidableDecorator
+    public class DisappearingBoobyTrap : CustomOnCollisionCallback
     {
-        public DisappearingBoobyTrap(ICollidable collidable, int damage, Action removeCallBack) : base(new Boobytrap(collidable, damage), removeCallBack)
+        public DisappearingBoobyTrap(ICollidable collidable, int damage, Action<ICollidable> removeCallBack) : base(new Boobytrap(collidable, damage), removeCallBack)
         {
         }
     }

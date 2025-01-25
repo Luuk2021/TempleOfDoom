@@ -2,7 +2,7 @@
 
 namespace TempleOfDoom.GameLogic.Models.Decorators
 {
-    public class Boobytrap : PlayerDamageCollidableDecorator
+    public class Boobytrap : DamageOnCollision
     {
         public Boobytrap(ICollidable collidable, int damage) : base(collidable, damage)
         {
