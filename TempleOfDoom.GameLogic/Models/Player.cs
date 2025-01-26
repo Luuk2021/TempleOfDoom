@@ -1,8 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using TempleOfDoom.GameLogic.Models.Decorators;
 using TempleOfDoom.GameLogic.Models.Interfaces;
 using TempleOfDoom.GameLogic.Services;
 
-namespace TempleOfDoom.GameLogic.Models.Decorators
+namespace TempleOfDoom.GameLogic.Models
 {
     public class Player : CollidableDecorator, IWalkable, IDamageable, IInventory
     {
@@ -40,7 +41,7 @@ namespace TempleOfDoom.GameLogic.Models.Decorators
             set
             {
                 var old_position = base.Position;
-                base.Position  = value;
+                base.Position = value;
                 _positionObservable.Notify((old_position, this));
             }
         }

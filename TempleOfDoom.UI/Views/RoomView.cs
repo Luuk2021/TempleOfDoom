@@ -10,11 +10,13 @@ namespace TempleOfDoom.UI.Views
         private Dictionary<(int x, int y), Dictionary<ILocatable, TileView>> _tileViews;
         private (int x, int y) _offset;
         private TileViewFactory _tileViewFactory;
+        private Dictionary<ILocatable, IDisposable> _unsubscriptions;
 
         public RoomView(Room room, (int x, int y) offset)
         {
             _tileViewFactory = new();
             _tileViews = [];
+            _unsubscriptions = [];
             _offset = offset;
 
             room.Subscribe(this);
@@ -37,7 +39,7 @@ namespace TempleOfDoom.UI.Views
             {
                 if (locatable is IObservable<((int x, int y) oldPos, ILocatable locatable)> observableLocatable)
                 {
-                    observableLocatable.Subscribe(this);
+                    _unsubscriptions[locatable] = observableLocatable.Subscribe(this);
                 }
                 var locatableName = locatable.GetType().Name.ToLower();
                 var tileView = _tileViewFactory.GetTileView(locatableName);
@@ -83,32 +85,43 @@ namespace TempleOfDoom.UI.Views
         {
             if (value.isAdded)
             {
-                if (value.locatable is IObservable<((int x, int y) oldPos, ILocatable locatable)> observableLocatable)
-                {
-                    observableLocatable.Subscribe(this);
-                }
-                var locatableName = value.locatable.GetType().Name.ToLower();
-                var tileView = _tileViewFactory.GetTileView(locatableName);
-                AddTileView(tileView, value.locatable);
-                _tileViews[value.locatable.Position].Values.OrderByDescending(t => t.Layer).First().Display();
+                HandleAddedLocatable(value.locatable);
             }
             else
             {
-                var positionTiles = _tileViews[value.locatable.Position];
-                var tileView = positionTiles[value.locatable];
-                positionTiles.Remove(value.locatable);
-                if (positionTiles.Count == 0)
-                {
-                    _tileViews.Remove(value.locatable.Position);
-                    Console.SetCursorPosition(value.locatable.Position.x + _offset.x, value.locatable.Position.y + _offset.y);
-                    Console.Write(' ');
-                }
-                else
-                {
-                    positionTiles.Values.OrderByDescending(t => t.Layer).First().Display();
-                }
+                HandleDeletedLocatable(value.locatable);
             }
         }
+
+        private void HandleAddedLocatable(ILocatable locatable)
+        {
+            SetLocatables([locatable]);
+            _tileViews[locatable.Position].Values.OrderByDescending(t => t.Layer).First().Display();
+        }
+
+        private void HandleDeletedLocatable(ILocatable locatable)
+        {
+            var positionTiles = _tileViews[locatable.Position];
+            var tileView = positionTiles[locatable];
+            positionTiles.Remove(locatable);
+
+            if (locatable is IObservable<((int x, int y) oldPos, ILocatable locatable)> observableLocatable)
+            {
+                _unsubscriptions[locatable].Dispose();
+                _unsubscriptions.Remove(locatable);
+            }
+            if (positionTiles.Count == 0)
+            {
+                _tileViews.Remove(locatable.Position);
+                Console.SetCursorPosition(locatable.Position.x + _offset.x, locatable.Position.y + _offset.y);
+                Console.Write(' ');
+            }
+            else
+            {
+                positionTiles.Values.OrderByDescending(t => t.Layer).First().Display();
+            }
+        }
+
         public void OnCompleted()
         {
             // We do nothing here

@@ -2,7 +2,7 @@
 
 namespace TempleOfDoom.GameLogic.Models.Decorators
 {
-    public class PlayerPickupCollideableDecorator : CollidableDecorator, IHoldable
+    public class PlayerPickupOnCollision : CollidableDecorator, IHoldable
     {
         public override Action<ICollidable> OnCollision
         {
@@ -15,7 +15,7 @@ namespace TempleOfDoom.GameLogic.Models.Decorators
                 }
             };
         }
-        public PlayerPickupCollideableDecorator(ICollidable wrapee) : base(wrapee)
+        public PlayerPickupOnCollision(ICollidable wrapee) : base(wrapee)
         {
         }
     }

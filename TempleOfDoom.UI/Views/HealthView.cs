@@ -24,6 +24,11 @@ namespace TempleOfDoom.UI.Views
             Console.Write($"Lives: {_lives}");
             return 1;
         }
+
+        public void SetNewOffset((int x, int y) offset)
+        {
+            _offset = offset;
+        }
         public void OnNext(int value)
         {
             _lives = value;

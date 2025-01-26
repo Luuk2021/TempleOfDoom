@@ -1,6 +1,7 @@
-﻿using TempleOfDoom.GameLogic.Models.Interfaces;
+﻿using TempleOfDoom.GameLogic.Models.Decorators;
+using TempleOfDoom.GameLogic.Models.Interfaces;
 
-namespace TempleOfDoom.GameLogic.Models.Decorators
+namespace TempleOfDoom.GameLogic.Models
 {
     public class Boobytrap : DamageOnCollision
     {

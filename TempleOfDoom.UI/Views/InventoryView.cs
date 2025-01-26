@@ -9,17 +9,24 @@ namespace TempleOfDoom.UI.Views
         private IInventory _inventory;
         private TileViewFactory _tileViewFactory;
         private int _maxDeltaOffsetX;
+        private IDisposable _subscription;
         public InventoryView(IInventory inventory, (int x, int y) offset, int maxDeltaOffsetX)
         {
             _tileViewFactory = new();
             _offset = offset;
             _maxDeltaOffsetX = maxDeltaOffsetX;
             _inventory = inventory;
-            _inventory.Subscribe(this);
+            _subscription = _inventory.Subscribe(this);
+        }
+
+        public void SetNewOffset((int x, int y) offset, int maxDeltaOffsetX)
+        {
+            _offset = offset;
+            _maxDeltaOffsetX = maxDeltaOffsetX;
         }
 
         public int Display()
-        {   
+        {
             int deltaOffsetY = 0;
             int deltaOffsetX = 0;
             Console.SetCursorPosition(_offset.x, _offset.y);
