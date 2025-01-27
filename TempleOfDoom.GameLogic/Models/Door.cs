@@ -10,15 +10,15 @@ namespace TempleOfDoom.GameLogic.Models
         public bool GoToNextRoom { get; set; }
         protected virtual bool IsOpen { get => true; }
 
-        public override Action<ICollidable> OnCollision
+        public override Action<ICollidable> OnEnter
         {
             get => c =>
             {
+                _wrapee.OnEnter(c);
                 if (c is Player p)
                 {
                     if (IsOpen)
                     {
-                        _wrapee.OnCollision(c);
                         GoToNextRoom = true;
                     } else
                     {

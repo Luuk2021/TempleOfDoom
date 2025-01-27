@@ -2,6 +2,7 @@
 {
     public interface ICollidable : ILocatable
     {
-        Action<ICollidable> OnCollision { get; }
+        Action<ICollidable> OnEnter { get; }
+        Action<ICollidable> OnExit { get; }
     }
 }

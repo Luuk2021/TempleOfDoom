@@ -5,11 +5,11 @@ namespace TempleOfDoom.GameLogic.Models.Decorators
     public class DamageOnCollision : CollidableDecorator
     {
         public int Damage { get; }
-        public override Action<ICollidable> OnCollision
+        public override Action<ICollidable> OnEnter
         {
             get => c =>
             {
-                _wrapee.OnCollision(c);
+                _wrapee.OnEnter(c);
                 if (c is IDamageable damageable)
                 {
                     damageable.TakeDamage(Damage);

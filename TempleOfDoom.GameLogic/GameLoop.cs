@@ -43,6 +43,7 @@ namespace TempleOfDoom.GameLogic
         public Room BuildRoom(int id, int width, int height)
         {
             var room = new Room(id);
+            Door door = null;
 
             for (int x = 0; x < width; x++)
             {
@@ -52,8 +53,7 @@ namespace TempleOfDoom.GameLogic
 
                 if (x == width / 2)
                 {
-                    var door = new KeyDoor(new BaseCollidable(x, height - 1), 2, (1, 1) , true,_player, 0);
-                    room.AddLocatable(door);
+                    door = new Door(new BaseCollidable(x, height - 1), 2, (1, 1));
                 }
                 else
                 {
@@ -109,10 +109,12 @@ namespace TempleOfDoom.GameLogic
             sankaraStone7 = new SankaraStone(sankaraStone7);
             room.AddLocatable(sankaraStone7);
 
-            ICollidable key = new BaseCollidable(1, 3);
-            key = new Key(key, 0);
-            room.AddLocatable(key);
+            ICollidable p = new BaseCollidable(1, 3);
+            p = new PressurePlate(p);
+            room.AddLocatable(p);
 
+            // = new ToggleDoor()
+            room.AddLocatable(door);
             return room;
         }
         public void Run()
@@ -181,11 +183,17 @@ namespace TempleOfDoom.GameLogic
         {
             var playerCollisions = _currentRoom.CheckCollisions(_player);
             var newCollisions = playerCollisions.Except(_previousCollisions);
+            var exitedCollisions = _previousCollisions.Except(playerCollisions);
 
             foreach (var collision in newCollisions)
             {
-                _player.OnCollision(collision);
-                collision.OnCollision(_player);
+                _player.OnEnter(collision);
+                collision.OnEnter(_player);
+            }
+            foreach (var collision in exitedCollisions)
+            {
+                _player.OnExit(collision);
+                collision.OnExit(_player);
             }
             _previousCollisions = playerCollisions.ToList();
         }
