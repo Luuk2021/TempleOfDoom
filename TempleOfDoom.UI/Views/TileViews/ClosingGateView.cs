@@ -6,11 +6,11 @@
 
         protected override char GetSymbol()
         {
-            return ' ';
+            return '\u2229';
         }
         protected override ConsoleColor GetColor()
         {
-            return ConsoleColor.Black;
+            return ConsoleColor.White;
         }
     }
 }

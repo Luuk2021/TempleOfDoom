@@ -7,7 +7,7 @@ namespace TempleOfDoom.GameLogic.Models
 {
     public class Player : CollidableDecorator, IWalkable, IDamageable, IInventory
     {
-        private readonly int _speed;
+        private readonly int _speed = 1;
         private int _health;
         private List<IHoldable> _items;
         public (int x, int y) OldPosition { get; private set; }
@@ -16,9 +16,8 @@ namespace TempleOfDoom.GameLogic.Models
         private Observable<((int x, int y) oldPos, ILocatable)> _positionObservable;
         private Observable<(bool isAdded, IHoldable)> _inventoryObservable;
 
-        public Player(ICollidable collidable, int health, int speed = 1) : base(collidable)
+        public Player(ICollidable collidable, int health) : base(collidable)
         {
-            _speed = speed;
             _health = health;
             _items = [];
             _healthObservable = new Observable<int>();

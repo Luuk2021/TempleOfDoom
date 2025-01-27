@@ -3,7 +3,7 @@ using TempleOfDoom.GameLogic.Models.Decorators.Door;
 
 namespace TempleOfDoom.UI.Views.TileViews
 {
-    public class ToggleDoorView : TileView
+    public class ToggleView : TileView
     {
         public override int Layer => 1;
 

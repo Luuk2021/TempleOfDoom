@@ -2,15 +2,15 @@
 
 namespace TempleOfDoom.GameLogic.Models.Decorators.Door
 {
-    public class ToggleDoor : Door, IObserver<PressurePlate>
+    public class Toggle : DoorDecorator, IObserver<PressurePlate>
     {
         private IEnumerable<PressurePlate> _pressurePlates;
         private bool _isOpen;
         public override bool IsOpen { get => ((IDoor)Wrapee).IsOpen && _isOpen; }
-        public ToggleDoor(IDoor wrapee, IEnumerable<PressurePlate> pressurePlates) : base(wrapee)
+        public Toggle(IDoor wrapee, Room room) : base(wrapee)
         {
             _isOpen = false;
-            _pressurePlates = pressurePlates;
+            _pressurePlates = room.GetLocatables().OfType<PressurePlate>();
             foreach (var item in _pressurePlates)
             {
                 item.Subscribe(this);

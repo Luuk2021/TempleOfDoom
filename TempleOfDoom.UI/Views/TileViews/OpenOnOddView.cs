@@ -1,6 +1,6 @@
 ﻿namespace TempleOfDoom.UI.Views.TileViews
 {
-    public class OddLivesDoorView : TileView
+    public class OpenOnOddView : TileView
     {
         public override int Layer => 1;
 

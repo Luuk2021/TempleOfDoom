@@ -2,9 +2,9 @@
 
 namespace TempleOfDoom.UI.Views.TileViews
 {
-    public class KeyDoorView : TileView
+    public class ColoredView : TileView
     {
-        private KeyDoor _model;
+        private Colored _model;
         private readonly Dictionary<string, ConsoleColor> _colors = new()
         {
             { "red", ConsoleColor.Red },
@@ -12,7 +12,7 @@ namespace TempleOfDoom.UI.Views.TileViews
             { "blue", ConsoleColor.Blue },
             { "yellow", ConsoleColor.Yellow }
         };
-        public KeyDoorView(KeyDoor model)
+        public ColoredView(Colored model)
         {
             _model = model;
         }

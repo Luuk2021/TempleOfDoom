@@ -2,10 +2,10 @@
 
 namespace TempleOfDoom.UI.Views.TileViews
 {
-    public class StonesInRoomDoorView : TileView
+    public class OpenOnStonesInRoomView : TileView
     {
-        private StonesInRoomDoor _model;
-        public StonesInRoomDoorView(StonesInRoomDoor model)
+        private OpenOnStonesInRoom _model;
+        public OpenOnStonesInRoomView(OpenOnStonesInRoom model)
         {
             _model = model;
         }

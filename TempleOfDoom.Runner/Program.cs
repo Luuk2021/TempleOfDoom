@@ -6,7 +6,7 @@ using TempleOfDoom.UI.Services;
 
 ConsoleInputReader consoleInputReader = new();
 ConsoleRenderer consoleRenderer = new();
-GameParser gameParser = new();
+GameParser gameParser = new(new LocatableFactory());
 
 GameLoop gameLoop = new(consoleRenderer, consoleInputReader, gameParser.Parse("Levels/TempleOfDoom.json"));
 gameLoop.Run();
