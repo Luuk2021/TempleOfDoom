@@ -1,6 +1,6 @@
 ﻿namespace TempleOfDoom.UI.Views.TileViews
 {
-    public class DoorView : TileView
+    public class ClosingGate : TileView
     {
         public override int Layer => 1;
 

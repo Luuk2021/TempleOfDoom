@@ -9,7 +9,7 @@ namespace TempleOfDoom.GameLogic.Models.Decorators
         {
             get => c =>
             {
-                Wrapee.OnEnter(c);
+                base.OnEnter(c);
                 if (c is IDamageable damageable)
                 {
                     damageable.TakeDamage(Damage);

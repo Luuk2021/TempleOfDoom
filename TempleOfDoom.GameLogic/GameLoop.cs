@@ -1,6 +1,6 @@
 ﻿using TempleOfDoom.GameLogic.Models;
 using TempleOfDoom.GameLogic.Models.Decorators;
-using TempleOfDoom.GameLogic.Models.Decorators.Door;
+using TempleOfDoom.GameLogic.Models.Door;
 using TempleOfDoom.GameLogic.Models.Interfaces;
 using TempleOfDoom.GameLogic.Services;
 
@@ -174,6 +174,13 @@ namespace TempleOfDoom.GameLogic
                 _game.Player.OnEnter(collision);
                 collision.OnEnter(_game.Player);
             }
+
+            foreach (var collision in playerCollisions)
+            {
+                _game.Player.OnStay(collision);
+                collision.OnStay(_game.Player);
+            }
+
             foreach (var collision in exitedCollisions)
             {
                 _game.Player.OnExit(collision);

@@ -9,6 +9,11 @@ namespace TempleOfDoom.GameLogic.Models
             get => c => { };
         }
 
+        public virtual Action<ICollidable> OnStay
+        {
+            get => c => { };
+        }
+
         public virtual Action<ICollidable> OnExit
         {
             get => c => { };

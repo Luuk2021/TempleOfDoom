@@ -1,11 +1,10 @@
 ﻿using TempleOfDoom.GameLogic.Models.Interfaces;
 
-namespace TempleOfDoom.GameLogic.Models.Decorators.Door
+namespace TempleOfDoom.GameLogic.Models.Door
 {
     public class OpenOnOdd : DoorDecorator
     {
         private Player _player;
-        public override bool IsOpen { get => ((IDoor)Wrapee).IsOpen && _player.Health % 2 == 1; }
         public override Action<ICollidable> OnEnter
         {
             get => c =>
@@ -14,11 +13,15 @@ namespace TempleOfDoom.GameLogic.Models.Decorators.Door
                 {
                     _player = p;
                 }
-                Wrapee.OnEnter(c);
+                base.OnEnter(c);
             };
         }
         public OpenOnOdd(IDoor wrapee) : base(wrapee)
         {
+        }
+        public override bool IsOpen()
+        {
+            return base.IsOpen() && _player.Health % 2 == 1;
         }
     }
 }

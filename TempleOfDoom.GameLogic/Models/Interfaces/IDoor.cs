@@ -5,6 +5,6 @@
         public int NextRoom { get; }
         public (int x, int y) NextRoomPlayerPosition { get; }
         public bool GoToNextRoom { get; set; }
-        public bool IsOpen { get; }
+        public bool IsOpen();
     }
 }

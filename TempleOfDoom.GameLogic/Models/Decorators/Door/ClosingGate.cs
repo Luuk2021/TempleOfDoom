@@ -1,17 +1,16 @@
 ﻿using TempleOfDoom.GameLogic.Models.Interfaces;
 
-namespace TempleOfDoom.GameLogic.Models.Decorators.Door
+namespace TempleOfDoom.GameLogic.Models.Door
 {
     public class ClosingGate : DoorDecorator
     {
         private IDoor _other;
-        private bool _isOpen = true;
-        public override bool IsOpen { get => ((IDoor)Wrapee).IsOpen && _isOpen && _other.IsOpen; }
+        private bool _isOpen;
         public override Action<ICollidable> OnEnter
         {
             get => c =>
             {
-                Wrapee.OnEnter(c);
+                base.OnEnter(c);
                 if (GoToNextRoom)
                 {
                     _isOpen = false;
@@ -21,6 +20,11 @@ namespace TempleOfDoom.GameLogic.Models.Decorators.Door
         public ClosingGate(IDoor wrapee, IDoor other) : base(wrapee)
         {
             _other = other;
+            _isOpen = true;
+        }
+        public override bool IsOpen()
+        {
+            return base.IsOpen() && _isOpen;
         }
     }
 }

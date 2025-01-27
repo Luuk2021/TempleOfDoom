@@ -2,8 +2,8 @@
 using TempleOfDoom.GameLogic.Models;
 using TempleOfDoom.GameLogic.Services;
 using TempleOfDoom.JsonGameParser.DTOs;
-using TempleOfDoom.GameLogic.Models.Decorators.Door;
 using TempleOfDoom.GameLogic.Models.Interfaces;
+using TempleOfDoom.GameLogic.Models.Door;
 
 namespace TempleOfDoom.JsonGameParser
 {
@@ -130,7 +130,6 @@ namespace TempleOfDoom.JsonGameParser
             }
         }
 
-
         private IDoor DecorateDoor(IDoor door, DTOs.Door doorDTO, GameLogic.Models.Room room ,bool isHorizontal, IDoor reverseDoor)
         {
             var name = doorDTO.type.ToLower().Replace(" ", "");
@@ -144,7 +143,10 @@ namespace TempleOfDoom.JsonGameParser
                 arguments.Add(isHorizontal);
 
             if (name == nameof(Toggle).ToLower())
+            {
                 arguments.Add(room);
+            }
+                
 
             if (name == nameof(OpenOnStonesInRoom).ToLower())
             {

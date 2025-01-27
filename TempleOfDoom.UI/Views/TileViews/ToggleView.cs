@@ -1,7 +1,4 @@
-﻿using System.Text;
-using TempleOfDoom.GameLogic.Models.Decorators.Door;
-
-namespace TempleOfDoom.UI.Views.TileViews
+﻿namespace TempleOfDoom.UI.Views.TileViews
 {
     public class ToggleView : TileView
     {

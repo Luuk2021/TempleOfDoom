@@ -8,7 +8,7 @@ namespace TempleOfDoom.GameLogic.Models.Decorators
         {
             get => c =>
             {
-                Wrapee.OnEnter(c);
+                base.OnEnter(c);
                 if (c is Player player)
                 {
                     player.AddItem(this);

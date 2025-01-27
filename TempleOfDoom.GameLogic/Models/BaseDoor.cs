@@ -1,21 +1,26 @@
-﻿using TempleOfDoom.GameLogic.Models.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TempleOfDoom.GameLogic.Models.Interfaces;
 
 namespace TempleOfDoom.GameLogic.Models
 {
-    public class BaseDoor : BaseCollidable, IDoor
+    public class BaseDoor : BaseCollidable , IDoor
     {
-        public int NextRoom { get; private set; }
-        public (int x, int y) NextRoomPlayerPosition { get; private set; }
+        public int NextRoom { get; }
+        public (int x, int y) NextRoomPlayerPosition { get; }
         public bool GoToNextRoom { get; set; }
-        public bool IsOpen { get => true; }
+
         public override Action<ICollidable> OnEnter
         {
             get => c =>
             {
-
+                base.OnEnter(c);
                 if (c is Player p)
                 {
-                    if (IsOpen)
+                    if (IsOpen())
                     {
                         GoToNextRoom = true;
                     }
@@ -26,11 +31,15 @@ namespace TempleOfDoom.GameLogic.Models
                 }
             };
         }
+
         public BaseDoor((int x, int y) position, int nextRoom, (int x, int y) nextRoomPlayerPosition) : base(position)
         {
             NextRoom = nextRoom;
             NextRoomPlayerPosition = nextRoomPlayerPosition;
-            GoToNextRoom = false;
+        }
+        public bool IsOpen()
+        {
+            return true;
         }
     }
 }
