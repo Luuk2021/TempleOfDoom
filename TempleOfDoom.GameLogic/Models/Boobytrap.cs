@@ -3,9 +3,9 @@ using TempleOfDoom.GameLogic.Models.Interfaces;
 
 namespace TempleOfDoom.GameLogic.Models
 {
-    public class Boobytrap : DamageOnCollision
+    public class BoobyTrap : DamageOnCollision
     {
-        public Boobytrap(ICollidable collidable, int damage) : base(collidable, damage)
+        public BoobyTrap(ICollidable collidable, int damage) : base(collidable, damage)
         {
         }
     }

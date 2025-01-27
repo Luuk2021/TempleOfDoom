@@ -43,7 +43,7 @@ namespace TempleOfDoom.UI.Views
                 }
                 var locatableName = locatable.GetType().Name.ToLower();
 
-                var tileView = _tileViewFactory.GetTileView(locatableName, [locatable]);
+                var tileView = _tileViewFactory.CreateTileView(locatableName, [locatable]);
 
                 AddTileView(tileView, locatable);
             }

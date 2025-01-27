@@ -25,7 +25,7 @@ namespace TempleOfDoom.UI.Services
             }
         }
 
-        public TileView GetTileView(string tileViewName, object?[]? args)
+        public TileView CreateTileView(string tileViewName, object?[]? args)
         {
             if (_tileViewsTypes.ContainsKey(tileViewName))
             {

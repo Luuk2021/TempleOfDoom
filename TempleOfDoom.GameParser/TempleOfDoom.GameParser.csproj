@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TempleOfDoom.GameLogic\TempleOfDoom.GameLogic.csproj" />
+  </ItemGroup>
+
 </Project>

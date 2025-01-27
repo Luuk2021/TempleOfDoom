@@ -9,7 +9,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TempleOfDoom.GameLogic\TempleOfDoom.GameLogic.csproj" />
+    <ProjectReference Include="..\TempleOfDoom.GameParser\TempleOfDoom.GameParser.csproj" />
     <ProjectReference Include="..\TempleOfDoom.UI\TempleOfDoom.UI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Levels\TempleOfDoom.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
