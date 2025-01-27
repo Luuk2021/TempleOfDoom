@@ -12,7 +12,7 @@ namespace TempleOfDoom.GameLogic.Models
         {
             get => c =>
             {
-                _wrapee.OnEnter(c);
+                Wrapee.OnEnter(c);
                 if (c is IWalkable w)
                 {
                     IsPressed = true;
@@ -26,7 +26,7 @@ namespace TempleOfDoom.GameLogic.Models
         {
             get => c =>
             {
-                _wrapee.OnExit(c);
+                Wrapee.OnExit(c);
                 if (c is IWalkable w)
                 {
                     IsPressed = false;

@@ -1,4 +1,4 @@
-﻿using TempleOfDoom.GameLogic.Models;
+﻿using TempleOfDoom.GameLogic.Models.Decorators.Door;
 
 namespace TempleOfDoom.UI.Views.TileViews
 {

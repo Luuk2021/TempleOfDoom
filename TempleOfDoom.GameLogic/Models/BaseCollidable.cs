@@ -16,9 +16,9 @@ namespace TempleOfDoom.GameLogic.Models
 
         public (int x, int y) Position { get; set; }
 
-        public BaseCollidable(int x, int y)
+        public BaseCollidable((int x, int y) position)
         {
-            Position = (x, y);
+            Position = position;
         }
     }
 }

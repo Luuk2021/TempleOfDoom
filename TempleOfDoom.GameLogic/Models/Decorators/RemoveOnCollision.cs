@@ -9,7 +9,7 @@ namespace TempleOfDoom.GameLogic.Models.Decorators
         {
             get => c => 
             {
-                _wrapee.OnEnter(c);
+                Wrapee.OnEnter(c);
                 ToRemove = true;
             };
         }

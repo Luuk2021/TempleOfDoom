@@ -4,8 +4,8 @@ namespace TempleOfDoom.GameLogic.Models.Decorators
 {
     public abstract class CollidableDecorator : ICollidable
     {
-        protected ICollidable _wrapee;
-        public virtual ICollidable Wrapee => _wrapee;
+        private ICollidable _wrapee;
+        public ICollidable Wrapee => _wrapee;
         public virtual (int x, int y) Position { get => _wrapee.Position; set => _wrapee.Position = value; }
         public virtual Action<ICollidable> OnEnter { get => _wrapee.OnEnter; }
         public virtual Action<ICollidable> OnExit { get => _wrapee.OnExit; }

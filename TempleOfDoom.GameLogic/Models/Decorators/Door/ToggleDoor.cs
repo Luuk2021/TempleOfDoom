@@ -1,16 +1,15 @@
-﻿using TempleOfDoom.GameLogic.Models.Decorators;
-using TempleOfDoom.GameLogic.Models.Interfaces;
+﻿using TempleOfDoom.GameLogic.Models.Interfaces;
 
-namespace TempleOfDoom.GameLogic.Models
+namespace TempleOfDoom.GameLogic.Models.Decorators.Door
 {
     public class ToggleDoor : Door, IObserver<PressurePlate>
     {
         private IEnumerable<PressurePlate> _pressurePlates;
         private bool _isOpen;
-        protected override bool IsOpen { get => _isOpen; }
-        public ToggleDoor(ICollidable wrapee, int nextRoom, (int x, int y) nextRoomPlayerPosition, bool initialOpened, IEnumerable<PressurePlate> pressurePlates) : base(wrapee, nextRoom, nextRoomPlayerPosition)
+        public override bool IsOpen { get => ((IDoor)Wrapee).IsOpen && _isOpen; }
+        public ToggleDoor(IDoor wrapee, IEnumerable<PressurePlate> pressurePlates) : base(wrapee)
         {
-            _isOpen = initialOpened;
+            _isOpen = false;
             _pressurePlates = pressurePlates;
             foreach (var item in _pressurePlates)
             {

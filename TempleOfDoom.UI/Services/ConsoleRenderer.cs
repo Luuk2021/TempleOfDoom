@@ -12,6 +12,8 @@ namespace TempleOfDoom.UI.Services
         public void Display(Room room)
         {
             Console.Clear();
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
             var offset = (x:3, y:0);
 
             _roomView = new RoomView(room, offset);
