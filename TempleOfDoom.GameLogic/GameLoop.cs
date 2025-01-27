@@ -52,7 +52,7 @@ namespace TempleOfDoom.GameLogic
 
                 if (x == width / 2)
                 {
-                    var door = new Door(new BaseCollidable(x, height - 1), 2, (1, 1));
+                    var door = new KeyDoor(new BaseCollidable(x, height - 1), 2, (1, 1) , true,_player, 0);
                     room.AddLocatable(door);
                 }
                 else
@@ -108,6 +108,10 @@ namespace TempleOfDoom.GameLogic
             ICollidable sankaraStone7 = new BaseCollidable(4, 3);
             sankaraStone7 = new SankaraStone(sankaraStone7);
             room.AddLocatable(sankaraStone7);
+
+            ICollidable key = new BaseCollidable(1, 3);
+            key = new Key(key, 0);
+            room.AddLocatable(key);
 
             return room;
         }

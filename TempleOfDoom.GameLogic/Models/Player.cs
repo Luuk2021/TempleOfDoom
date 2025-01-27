@@ -10,6 +10,7 @@ namespace TempleOfDoom.GameLogic.Models
         private readonly int _speed;
         private int _health;
         private List<IHoldable> _items;
+        public (int x, int y) OldPosition { get; private set; }
 
         private Observable<int> _healthObservable;
         private Observable<((int x, int y) oldPos, ILocatable)> _positionObservable;
@@ -40,9 +41,9 @@ namespace TempleOfDoom.GameLogic.Models
             get => base.Position;
             set
             {
-                var old_position = base.Position;
+                OldPosition = base.Position;
                 base.Position = value;
-                _positionObservable.Notify((old_position, this));
+                _positionObservable.Notify((OldPosition, this));
             }
         }
 

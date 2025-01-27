@@ -42,7 +42,8 @@ namespace TempleOfDoom.UI.Views
                     _unsubscriptions[locatable] = observableLocatable.Subscribe(this);
                 }
                 var locatableName = locatable.GetType().Name.ToLower();
-                var tileView = _tileViewFactory.GetTileView(locatableName);
+
+                var tileView = _tileViewFactory.GetTileView(locatableName, [locatable]);
 
                 AddTileView(tileView, locatable);
             }

@@ -41,7 +41,7 @@ namespace TempleOfDoom.UI.Views
             foreach (var item in _inventory.GetItems())
             {
                 var holdableName = item.GetType().Name.ToLower();
-                var tileView = _tileViewFactory.GetTileView(holdableName);
+                var tileView = _tileViewFactory.GetTileView(holdableName, [item]);
 
                 tileView.ScreenPosition = (deltaOffsetX + _offset.x, deltaOffsetY + _offset.y);
                 tileView.Display();
