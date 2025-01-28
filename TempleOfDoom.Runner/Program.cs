@@ -12,7 +12,8 @@ IGameParserStrategy gameParserStrategy = new JsonGameParserStrategy();
 GameParser gameParser = new(new LocatableFactory(), gameParserStrategy);
 
 bool isRunning = true;
-consoleRenderer.Display("Welcone to Temple of Doom \r\nPress Enter to start \r\nPress Esc to quit");
+var commandsMessage = "Press Enter to start \r\nPress Esc to quit";
+consoleRenderer.Display($"Welcone to Temple of Doom \r\n{commandsMessage}");
 
 while (isRunning)
 {
@@ -23,9 +24,9 @@ while (isRunning)
     }
     if (key == GameAction.Start)
     {
-        GameLoop gameLoop = new(consoleRenderer, consoleInputReader, gameParser.Parse("Levels/TempleOfDoom.json"));
+        GameLoop gameLoop = new(consoleRenderer, consoleInputReader, gameParser.Parse("Levels/TempleOfDoom_Extended_C_2223.json"));
         gameLoop.Run();
         consoleRenderer = new ConsoleRenderer();
-        consoleRenderer.Display("Press Enter to start \r\nPress Esc to quit");
+        consoleRenderer.Display(commandsMessage);
     }
 }

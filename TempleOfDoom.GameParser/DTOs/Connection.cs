@@ -7,6 +7,7 @@
         public Door[] doors { get; set; }
         public int WEST { get; set; }
         public int EAST { get; set; }
+        public int within { get; set; }
     }
 
 }

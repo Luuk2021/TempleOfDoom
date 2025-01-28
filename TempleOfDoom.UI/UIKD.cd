@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TempleOfDoom.UI.Views.TileViews.BaseDoorView" Collapsed="true">
+    <Position X="14" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\BaseDoorView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.BoobyTrapView" Collapsed="true">
+    <Position X="23" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\BoobyTrapView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.ClosingGate" Collapsed="true">
+    <Position X="32" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\ClosingGateView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.ColoredView" Collapsed="true">
+    <Position X="21.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAgAAAAAAAAAAQACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\ColoredView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.DisappearingBoobyTrapView" Collapsed="true">
+    <Position X="26.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\DisappearingBoobyTrapView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.HorizontalView" Collapsed="true">
+    <Position X="16.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\HorizontalView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.KeyView" Collapsed="true">
+    <Position X="25.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAgAAAAAAAAAAQACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\KeyView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.OpenOnOddView" Collapsed="true">
+    <Position X="34.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\OpenOnOddView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.OpenOnStonesInRoomView" Collapsed="true">
+    <Position X="24" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAgAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\OpenOnStonesInRoomView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.PlayerView" Collapsed="true">
+    <Position X="28.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\PlayerView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.PressurePlateView" Collapsed="true">
+    <Position X="18.5" Y="6" Width="1.5" />
+    <InheritanceLine Type="TempleOfDoom.UI.Views.TileViews.TileView" FixedFromPoint="true">
+      <Path>
+        <Point X="34.25" Y="4.75" />
+        <Point X="33.875" Y="4.75" />
+        <Point X="33.875" Y="5.625" />
+        <Point X="19.25" Y="5.625" />
+        <Point X="19.25" Y="6" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\PressurePlateView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.SankaraStoneView" Collapsed="true">
+    <Position X="27.5" Y="6" Width="1.5" />
+    <InheritanceLine Type="TempleOfDoom.UI.Views.TileViews.TileView" ManuallyRouted="true">
+      <Path>
+        <Point X="35" Y="5.062" />
+        <Point X="35" Y="5.248" />
+        <Point X="34.989" Y="5.248" />
+        <Point X="34.989" Y="5.625" />
+        <Point X="28.25" Y="5.625" />
+        <Point X="28.25" Y="6" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\SankaraStoneView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.SwitchedView" Collapsed="true">
+    <Position X="19.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\SwitchedView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.TileView" Collapsed="true">
+    <Position X="34.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAQAAAAAAIACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\TileView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.ToggleView" Collapsed="true">
+    <Position X="30.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\ToggleView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.VerticalView" Collapsed="true">
+    <Position X="20.75" Y="6" Width="1.5" />
+    <InheritanceLine Type="TempleOfDoom.UI.Views.TileViews.TileView" ManuallyRouted="true">
+      <Path>
+        <Point X="35" Y="5.062" />
+        <Point X="33.958" Y="5.062" Type="JumpStart" />
+        <Point X="33.792" Y="5.062" Type="JumpEnd" />
+        <Point X="33.073" Y="5.062" Type="JumpStart" />
+        <Point X="32.906" Y="5.062" Type="JumpEnd" />
+        <Point X="30.564" Y="5.062" />
+        <Point X="30.564" Y="5.625" />
+        <Point X="21.5" Y="5.625" />
+        <Point X="21.5" Y="6" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\VerticalView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.TileViews.WallView" Collapsed="true">
+    <Position X="29.75" Y="6" Width="1.5" />
+    <InheritanceLine Type="TempleOfDoom.UI.Views.TileViews.TileView" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="34.25" Y="4.75" />
+        <Point X="33.958" Y="4.75" Type="JumpStart" />
+        <Point X="33.792" Y="4.75" Type="JumpEnd" />
+        <Point X="32.989" Y="4.75" />
+        <Point X="32.989" Y="5.625" />
+        <Point X="30.157" Y="5.625" />
+        <Point X="30.157" Y="6" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TileViews\WallView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.HealthView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="40.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAACAAAJAIAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\HealthView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.InventoryView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="38.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAACAgIJAIAAAAQAAAAAAAAKAAAAAAAAQAAA=</HashCode>
+      <FileName>Views\InventoryView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_tileViewFactory" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.UI.Views.RoomView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="43.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAACAAAIAIAAAASgAAAAAAAIASgAAAgAAAAA=</HashCode>
+      <FileName>Views\RoomView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_tileViewFactory" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.UI.ConsoleInputReader" BaseTypeListCollapsed="true">
+    <Position X="45.25" Y="9" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Services\ConsoleInputReader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.UI.Services.ConsoleRenderer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="40.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAEAiAAAAAAAwAAAAAAAAAAAAAAAAAAQAI=</HashCode>
+      <FileName>Services\ConsoleRenderer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_healthView" />
+      <Field Name="_inventoryView" />
+      <Field Name="_roomView" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.UI.Services.TileViewFactory">
+    <Position X="40.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Services\TileViewFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TempleOfDoom.GameLogic.Services.IInputReader" Collapsed="true">
+    <Position X="1.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
