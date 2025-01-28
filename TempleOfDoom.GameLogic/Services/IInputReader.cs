@@ -11,6 +11,7 @@
         MoveDown,
         MoveLeft,
         MoveRight,
-        Quit
+        Quit,
+        Start
     }
 }

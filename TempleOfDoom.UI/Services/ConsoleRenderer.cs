@@ -30,6 +30,23 @@ namespace TempleOfDoom.UI.Services
             }
         }
 
+        public void Display(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public void DisplayGameOver()
+        {
+            Console.Clear();
+            Console.WriteLine("Game Over");
+        }
+
+        public void DisplayWin()
+        {
+            Console.Clear();
+            Console.WriteLine("You Win!");
+        }
+
         private int DisplayInventory(Player player, int maxWidth, (int x, int y) offset)
         {
             if (_inventoryView != null)

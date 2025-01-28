@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using TempleOfDoom.GameLogic.Models;
+﻿using TempleOfDoom.GameLogic.Models;
 using TempleOfDoom.GameLogic.Services;
 using TempleOfDoom.JsonGameParser.DTOs;
 using TempleOfDoom.GameLogic.Models.Interfaces;
@@ -10,20 +9,17 @@ namespace TempleOfDoom.JsonGameParser
     public class GameParser
     {
         private LocatableFactory _locatableFactory;
+        private IGameParserStrategy _strategy;
 
-        public GameParser(LocatableFactory locatableFactory)
+        public GameParser(LocatableFactory locatableFactory, IGameParserStrategy strategy)
         {
             _locatableFactory = locatableFactory;
+            _strategy = strategy;
         }
 
         public GameLogic.Models.Game Parse(string path)
         {
-            var gameDTO = JsonSerializer.Deserialize<DTOs.Game>(File.ReadAllText(path));
-
-            if (gameDTO == null)
-            {
-                throw new Exception("Could not parse game file");
-            }
+            var gameDTO = _strategy.Parse(path);
 
             var rooms = new List<GameLogic.Models.Room>();
 
@@ -32,8 +28,6 @@ namespace TempleOfDoom.JsonGameParser
                 rooms.Add(BuildRoom(roomDTO));
             }
             var playerDTO = gameDTO.player;
-            playerDTO.startX++;
-            playerDTO.startY++;
 
             ICollidable collidable = new BaseCollidable((playerDTO.startX, playerDTO.startY));
 
@@ -62,7 +56,7 @@ namespace TempleOfDoom.JsonGameParser
                         (0, eastRoom.Height / 2),
                         (westRoom.Width, westRoom.Height / 2),
                         connection,
-                        true
+                        false
                     );
                 }
 
@@ -74,7 +68,7 @@ namespace TempleOfDoom.JsonGameParser
                         (southRoom.Width / 2, 0),
                         (northRoom.Width / 2, northRoom.Height),
                         connection,
-                        false
+                        true
                     );
                 }
             }
@@ -94,7 +88,7 @@ namespace TempleOfDoom.JsonGameParser
             var sourcePosToGoTo = sourcePosition;
             var targetPosToGoTo = targetPosition;
 
-            if (horizontal)
+            if (!horizontal)
             {
                 sourcePosToGoTo = (sourcePosition.x + 1, sourcePosition.y);
                 targetPosToGoTo = (targetPosition.x - 1, targetPosition.y);
@@ -108,14 +102,14 @@ namespace TempleOfDoom.JsonGameParser
             IDoor baseDoor = new BaseDoor(sourcePosition, targetRoom.Id, targetPosToGoTo);
             IDoor reverseDoor = new BaseDoor(targetPosition, sourceRoom.Id, sourcePosToGoTo);
 
-            foreach (var doorDTO in connection.doors)
+            foreach (var doorDTO in connection.doors.Reverse())
             {
-                baseDoor = DecorateDoor(baseDoor, doorDTO, sourceRoom, horizontal, reverseDoor);
+                baseDoor = DecorateDoor(baseDoor, doorDTO, sourceRoom, horizontal);
             }
 
-            foreach (var doorDTO in connection.doors)
+            foreach (var doorDTO in connection.doors.Reverse())
             {
-                reverseDoor = DecorateDoor(reverseDoor, doorDTO, targetRoom, horizontal, baseDoor);
+                reverseDoor = DecorateDoor(reverseDoor, doorDTO, targetRoom, horizontal);
             }
             sourceRoom.AddLocatable(baseDoor);
             targetRoom.AddLocatable(reverseDoor);
@@ -130,14 +124,11 @@ namespace TempleOfDoom.JsonGameParser
             }
         }
 
-        private IDoor DecorateDoor(IDoor door, DTOs.Door doorDTO, GameLogic.Models.Room room ,bool isHorizontal, IDoor reverseDoor)
+        private IDoor DecorateDoor(IDoor door, DTOs.Door doorDTO, GameLogic.Models.Room room ,bool isHorizontal)
         {
             var name = doorDTO.type.ToLower().Replace(" ", "");
 
             List<object> arguments = [door];
-
-            if (name == nameof(ClosingGate).ToLower())
-                arguments.Add(reverseDoor);
 
             if (name == nameof(Colored).ToLower())
                 arguments.Add(isHorizontal);
@@ -147,7 +138,6 @@ namespace TempleOfDoom.JsonGameParser
                 arguments.Add(room);
             }
                 
-
             if (name == nameof(OpenOnStonesInRoom).ToLower())
             {
                 arguments.Add(room);
@@ -174,8 +164,6 @@ namespace TempleOfDoom.JsonGameParser
         private GameLogic.Models.Room BuildRoom(DTOs.Room roomDTO)
         {
             var room = new GameLogic.Models.Room(roomDTO.id);
-            roomDTO.height += 2;
-            roomDTO.width += 2;
 
             for (int x = 0; x < roomDTO.width; x++)
             {
@@ -194,9 +182,6 @@ namespace TempleOfDoom.JsonGameParser
 
             foreach (var item in roomDTO.items)
             {
-                item.y++;
-                item.x++;
-
                 var name = item.type.ToLower().Replace(" ", "");
                 ICollidable collidable = new BaseCollidable((item.x, item.y));
 

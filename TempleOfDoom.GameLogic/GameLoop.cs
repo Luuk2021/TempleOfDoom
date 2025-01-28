@@ -17,6 +17,8 @@ namespace TempleOfDoom.GameLogic
         private List<ICollidable> _previousCollisions = [];
         private Dictionary<GameAction, Action> _actions;
 
+        private int _stonesAmountToWin = 5;
+
         public GameLoop(IRenderer renderer, IInputReader inputReader, Game game) {
             _renderer = renderer;
             _inputReader = inputReader;
@@ -34,74 +36,7 @@ namespace TempleOfDoom.GameLogic
                 { GameAction.MoveRight, () => _game.Player.TryMove(Direction.Right, _currentRoom.CanMoveTo) }
             };
         }
-        //public Room BuildRoom(int id, int width, int height)
-        //{
-        //    var room = new Room(id);
-        //    Door door = null;
 
-        //    for (int x = 0; x < width; x++)
-        //    {
-        //        var wall = new Wall();
-        //        wall.Position = (x, 0);
-        //        room.AddLocatable(wall);
-
-        //        if (x == width / 2)
-        //        {
-        //            door = new Door(new BaseDoor((x, height - 1), 2, (1, 1)));
-        //        }
-        //        else
-        //        {
-        //            wall = new Wall();
-        //            wall.Position = (x, height - 1);
-        //            room.AddLocatable(wall);
-        //        }
-        //    }
-
-        //    for (int y = 0; y < height; y++)
-        //    {
-        //        var wall = new Wall();
-        //        wall.Position = (0, y);
-        //        room.AddLocatable(wall);
-
-        //        wall = new Wall();
-        //        wall.Position = (width - 1, y);
-        //        room.AddLocatable(wall);
-        //    }
-
-        //    ICollidable boobyTrap = new Boobytrap(new BaseCollidable((2, 2)), 1);
-        //    room.AddLocatable(boobyTrap);
-
-        //    ICollidable boobyTrap2 = new BaseCollidable((3, 3));
-        //    boobyTrap2 = new DisappearingBoobyTrap(boobyTrap2, 1);
-        //    room.AddLocatable(boobyTrap2);
-
-        //    ICollidable sankaraStone = new BaseCollidable((4, 2));
-        //    sankaraStone = new SankaraStone(sankaraStone);
-        //    room.AddLocatable(sankaraStone);
-
-        //    ICollidable sankaraStone7 = new BaseCollidable((4, 3));
-        //    sankaraStone7 = new SankaraStone(sankaraStone7);
-        //    room.AddLocatable(sankaraStone7);
-
-        //    ICollidable p = new BaseCollidable((1, 3));
-        //    p = new PressurePlate(p);
-        //    room.AddLocatable(p);
-
-        //    ICollidable p2 = new BaseCollidable((3, 1));
-        //    p2 = new PressurePlate(p2);
-        //    room.AddLocatable(p2);
-
-        //    ICollidable k = new BaseCollidable((1, 2));
-        //    k = new Key(k, 12);
-        //    room.AddLocatable(k);
-
-        //    //door = new ToggleDoor(door, [(PressurePlate)p, (PressurePlate)p2]);
-        //    //door = new KeyDoor(door, true, _player, 12);
-        //    //door = new StonesInRoomDoor(door, room, 2);
-        //    door = new OddLivesDoor(door, _player);
-        //    room.AddLocatable(door);
-        //    return room;
-        //}
         public void Run()
         {
             _isRunning = true;
@@ -110,11 +45,26 @@ namespace TempleOfDoom.GameLogic
             while (_isRunning)
             {
                 var action = _inputReader.GetNextInput();
-                _actions[action]();
+                if (_actions.ContainsKey(action)) _actions[action]();
 
                 HandleCollisionsWithPlayer();
                 HandleCollisionRemoves();
                 HandleChangeRoom();
+                CheckIfGameEnding();
+            }
+        }
+
+        private void CheckIfGameEnding()
+        {
+            if (_game.Player.Health <= 0)
+            {
+                _isRunning = false;
+                _renderer.DisplayGameOver();
+            }
+            if (_game.Player.GetItems().OfType<SankaraStone>().Count() == _stonesAmountToWin)
+            {
+                _isRunning = false;
+                _renderer.DisplayWin();
             }
         }
 

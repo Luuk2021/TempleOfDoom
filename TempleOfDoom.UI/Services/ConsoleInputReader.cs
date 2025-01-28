@@ -10,7 +10,8 @@ namespace TempleOfDoom.UI
             { ConsoleKey.DownArrow, GameAction.MoveDown },
             { ConsoleKey.LeftArrow, GameAction.MoveLeft },
             { ConsoleKey.RightArrow, GameAction.MoveRight },
-            { ConsoleKey.Escape, GameAction.Quit }
+            { ConsoleKey.Escape, GameAction.Quit },
+            { ConsoleKey.Enter, GameAction.Start }
         };
         public GameAction GetNextInput()
         {
