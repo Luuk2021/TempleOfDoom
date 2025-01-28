@@ -3,6 +3,7 @@ using TempleOfDoom.GameLogic.Services;
 using TempleOfDoom.JsonGameParser.DTOs;
 using TempleOfDoom.GameLogic.Models.Interfaces;
 using TempleOfDoom.GameLogic.Models.Door;
+using TempleOfDoom.GameParser.DTOs;
 
 namespace TempleOfDoom.JsonGameParser
 {
@@ -31,7 +32,7 @@ namespace TempleOfDoom.JsonGameParser
 
             ICollidable collidable = new BaseCollidable((playerDTO.startX, playerDTO.startY));
 
-            var player = (GameLogic.Models.Player) _locatableFactory.CreateLocatable("player", [collidable, playerDTO.lives]);
+            var player = (GameLogic.Models.Player)_locatableFactory.CreateLocatable("player", [collidable, playerDTO.lives]);
 
             var startRoom = rooms.First(r => r.Id == playerDTO.startRoomId);
 
@@ -124,7 +125,7 @@ namespace TempleOfDoom.JsonGameParser
             }
         }
 
-        private IDoor DecorateDoor(IDoor door, DTOs.Door doorDTO, GameLogic.Models.Room room ,bool isHorizontal)
+        private IDoor DecorateDoor(IDoor door, DTOs.Door doorDTO, GameLogic.Models.Room room, bool isHorizontal)
         {
             var name = doorDTO.type.ToLower().Replace(" ", "");
 
@@ -133,11 +134,11 @@ namespace TempleOfDoom.JsonGameParser
             if (name == nameof(Colored).ToLower())
                 arguments.Add(isHorizontal);
 
-            if (name == nameof(Toggle).ToLower())
+            if (name == nameof(Toggle).ToLower() || name == nameof(Switched).ToLower())
             {
                 arguments.Add(room);
             }
-                
+
             if (name == nameof(OpenOnStonesInRoom).ToLower())
             {
                 arguments.Add(room);
@@ -177,29 +178,60 @@ namespace TempleOfDoom.JsonGameParser
                 room.AddLocatable(new Wall((roomDTO.width - 1, y)));
             }
 
-            if (roomDTO.items == null)
-                return room;
-
-            foreach (var item in roomDTO.items)
+            if (roomDTO.items != null)
             {
-                var name = item.type.ToLower().Replace(" ", "");
-                ICollidable collidable = new BaseCollidable((item.x, item.y));
-
-                List<object> arguments = [collidable];
-                var properties = item.GetType().GetProperties();
-
-                foreach (var property in properties)
+                foreach (var item in roomDTO.items)
                 {
-                    if (property.Name == nameof(item.type) || property.Name == nameof(item.x) || property.Name == nameof(item.y)) continue;
-                    var value = property.GetValue(item);
-                    if (value != null && !IsDefaultValue(value)) arguments.Add(value);
+                    room.AddLocatable(CreateLocatableFromItem(item));
                 }
+            }
 
-                room.AddLocatable(_locatableFactory.CreateLocatable(name, arguments.ToArray()));
+            if (roomDTO.enemies != null)
+            {
+                foreach (var enemy in roomDTO.enemies)
+                {
+                    room.AddLocatable(CreateLocatableFromEnemy(enemy));
+                }
             }
 
             return room;
         }
+
+        private ILocatable CreateLocatableFromItem(Item item)
+        {
+            var name = item.type.ToLower().Replace(" ", "");
+            var collidable = new BaseCollidable((item.x, item.y));
+            var arguments = new List<object> { collidable };
+
+            var properties = item.GetType().GetProperties();
+            foreach (var property in properties)
+            {
+                if (property.Name == nameof(item.type) || property.Name == nameof(item.x) || property.Name == nameof(item.y))
+                    continue;
+
+                var value = property.GetValue(item);
+                if (value != null && !IsDefaultValue(value))
+                {
+                    arguments.Add(value);
+                }
+            }
+
+            return _locatableFactory.CreateLocatable(name, arguments.ToArray());
+        }
+
+        private ILocatable CreateLocatableFromEnemy(Enemy enemy)
+        {
+            var name = enemy.type.ToLower().Replace(" ", "");
+            var collidable = new BaseCollidable((enemy.x, enemy.y));
+            var arguments = new List<object>{
+                collidable,
+                (enemy.minX, enemy.minY),
+                (enemy.maxX, enemy.maxY)
+            };
+
+            return _locatableFactory.CreateLocatable(name, arguments.ToArray());
+        }
+
         private bool IsDefaultValue(object value)
         {
             if (value is int intValue && intValue == 0)

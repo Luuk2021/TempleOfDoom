@@ -23,7 +23,7 @@ while (isRunning)
     }
     if (key == GameAction.Start)
     {
-        GameLoop gameLoop = new(consoleRenderer, consoleInputReader, gameParser.Parse("Levels/TempleOfDoom.json"));
+        GameLoop gameLoop = new(consoleRenderer, consoleInputReader, gameParser.Parse("Levels/TempleOfDoom_Extended_C_2223.json"));
         gameLoop.Run();
         consoleRenderer = new ConsoleRenderer();
         consoleRenderer.Display("Press Enter to start \r\nPress Esc to quit");
