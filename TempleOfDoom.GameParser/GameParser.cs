@@ -4,6 +4,9 @@ using TempleOfDoom.JsonGameParser.DTOs;
 using TempleOfDoom.GameLogic.Models.Interfaces;
 using TempleOfDoom.GameLogic.Models.Door;
 using TempleOfDoom.GameParser.DTOs;
+using TempleOfDoom.GameLogic.Models.Adapters;
+using Room = TempleOfDoom.GameLogic.Models.Room;
+using TempleOfDoom.GameLogic.Models.Decorators.Door;
 
 namespace TempleOfDoom.JsonGameParser
 {
@@ -26,7 +29,7 @@ namespace TempleOfDoom.JsonGameParser
 
             foreach (var roomDTO in gameDTO.rooms)
             {
-                rooms.Add(BuildRoom(roomDTO));
+                rooms.Add(BuildRoom(roomDTO, gameDTO.connections));
             }
             var playerDTO = gameDTO.player;
 
@@ -162,7 +165,7 @@ namespace TempleOfDoom.JsonGameParser
             return (IDoor)_locatableFactory.CreateLocatable(name, arguments.ToArray());
         }
 
-        private GameLogic.Models.Room BuildRoom(DTOs.Room roomDTO)
+        private GameLogic.Models.Room BuildRoom(DTOs.Room roomDTO, IEnumerable<Connection> connections)
         {
             var room = new GameLogic.Models.Room(roomDTO.id);
 
@@ -194,7 +197,32 @@ namespace TempleOfDoom.JsonGameParser
                 }
             }
 
+            if (roomDTO.specialFloorTiles != null)
+            {
+                foreach (var specialFloorTile in roomDTO.specialFloorTiles)
+                {
+                    if (specialFloorTile.type == "wall")
+                        room.AddLocatable(new Wall((specialFloorTile.x,specialFloorTile.y)));
+                    if (specialFloorTile.type == "innerdoor")
+                    {
+                        IDoor door = new BaseDoor((specialFloorTile.x, specialFloorTile.y), roomDTO.id, (specialFloorTile.x, specialFloorTile.y - 1));
+                        door = new TogglePosition(door, (specialFloorTile.x, specialFloorTile.y + 1));
+                        room.AddLocatable(BuildWithin(door, room, connections));
+                    }
+                }
+            }
             return room;
+        }
+
+        private IDoor BuildWithin(IDoor door, Room room, IEnumerable<Connection> connections)
+        {
+            var connection = connections.First(c => c.within == room.Id);
+
+            foreach (var doorDTO in connection.doors)
+            {
+                door = DecorateDoor(door, doorDTO, room, true);
+            }
+            return door;
         }
 
         private ILocatable CreateLocatableFromItem(Item item)

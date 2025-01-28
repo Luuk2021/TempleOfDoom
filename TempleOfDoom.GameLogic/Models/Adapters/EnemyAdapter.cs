@@ -7,7 +7,7 @@ using TempleOfDoom.GameLogic.Services;
 
 namespace TempleOfDoom.GameLogic.Models.Adapters
 {
-    public abstract class EnemyAdapter : CollidableDecorator, IDamageable, IWalkable
+    public abstract class EnemyAdapter : DamageOnCollision, IDamageable, IWalkable
     {
         private class FieldAdapter : IField
         {
@@ -26,19 +26,7 @@ namespace TempleOfDoom.GameLogic.Models.Adapters
         private Observable<int> _healthObservable;
         private Observable<((int x, int y) oldPos, ILocatable)> _positionObservable;
 
-        public override Action<ICollidable> OnEnter
-        {
-            get => c =>
-            {
-                Wrapee.OnEnter(c);
-                if (c is Player p)
-                {
-                    p.TakeDamage(1);
-                }
-            };
-        }
-
-        public EnemyAdapter(Enemy enemy) : base(new BaseCollidable((enemy.CurrentXLocation, enemy.CurrentYLocation)))
+        public EnemyAdapter(Enemy enemy) : base(new BaseCollidable((enemy.CurrentXLocation, enemy.CurrentYLocation)), 1)
         {
             _adaptee = enemy;
             _adaptee.CurrentField = new FieldAdapter();

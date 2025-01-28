@@ -10,5 +10,6 @@ namespace TempleOfDoom.JsonGameParser.DTOs
         public int height { get; set; }
         public Item[] items { get; set; }
         public Enemy[] enemies { get; set; }
+        public Item[] specialFloorTiles { get; set; }
     }
 }
