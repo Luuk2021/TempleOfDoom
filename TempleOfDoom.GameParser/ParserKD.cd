@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TempleOfDoom.JsonGameParser.DTOs.Connection" Collapsed="true">
+    <Position X="2.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAgAAAAAABAAAQAAAAAAAAAAEAQAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Connection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.JsonGameParser.DTOs.Door" Collapsed="true">
+    <Position X="2.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAACAAAQAAAAAAAA=</HashCode>
+      <FileName>DTOs\Door.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.JsonGameParser.DTOs.Game" Collapsed="true">
+    <Position X="0.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAABIAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.JsonGameParser.DTOs.Item" Collapsed="true">
+    <Position X="4.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAABAACAAABgAAAAAAA=</HashCode>
+      <FileName>DTOs\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.JsonGameParser.DTOs.Player" Collapsed="true">
+    <Position X="2.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAgAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.JsonGameParser.DTOs.Room" Collapsed="true">
+    <Position X="0.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAQAQAgAAAAAAAABAAABAAAAAAAAAgA=</HashCode>
+      <FileName>DTOs\Room.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameParser.DTOs.Enemy" Collapsed="true">
+    <Position X="0.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ADAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAABgADAAAAA=</HashCode>
+      <FileName>DTOs\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.JsonGameParser.GameParser">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAgAAAAAQAACAAACCAAAgAAACAAAAAAABAAAACCAgA=</HashCode>
+      <FileName>GameParser.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_strategy" />
+      <Field Name="_locatableFactory" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TempleOfDoom.JsonGameParser.JsonGameParserStrategy" BaseTypeListCollapsed="true">
+    <Position X="10" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>JsonGameParserStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Services.LocatableFactory" Collapsed="true">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="TempleOfDoom.JsonGameParser.IGameParserStrategy">
+    <Position X="8" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IGameParserStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

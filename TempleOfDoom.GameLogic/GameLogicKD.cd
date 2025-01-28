@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TempleOfDoom.GameLogic.Models.Adapters.EnemyAdapter" Collapsed="true">
+    <Position X="30.25" Y="8.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="TempleOfDoom.GameLogic.Models.Adapters.EnemyAdapter.FieldAdapter" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Adapters\EnemyAdapter.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <InheritanceLine Type="TempleOfDoom.GameLogic.Models.Decorators.DamageOnCollision" ManuallyRouted="true">
+      <Path>
+        <Point X="30.875" Y="2.441" />
+        <Point X="30.875" Y="4.399" />
+        <Point X="31" Y="4.399" />
+        <Point X="31" Y="8.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>ACABCAAAAAAAAAggAAAAAAAAAAgCAAAAAAAAgAAAAgA=</HashCode>
+      <FileName>Models\Adapters\EnemyAdapter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_adaptee" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Adapters.Horizontal" Collapsed="true">
+    <Position X="29.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Adapters\Horizontal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Adapters.Vertical" Collapsed="true">
+    <Position X="31.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Adapters\Vertical.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Door.ClosingGate" Collapsed="true">
+    <Position X="23.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAgAAAAA=</HashCode>
+      <FileName>Models\Decorators\Door\ClosingGate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Door.Colored" Collapsed="true">
+    <Position X="25.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAIAAAAAAAAAAAAACAAoAAAAAAAAA=</HashCode>
+      <FileName>Models\Decorators\Door\Colored.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Door.DoorDecorator" Collapsed="true">
+    <Position X="23.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAABAAAAAAAAACAAAAABAEAAAAAAAAAAAIgAAAAAAAA=</HashCode>
+      <FileName>Models\Decorators\Door\DoorDecorator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Door.OpenOnOdd" Collapsed="true">
+    <Position X="25.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Models\Decorators\Door\OpenOnOdd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Door.OpenOnStonesInRoom" Collapsed="true">
+    <Position X="23.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAABAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Decorators\Door\OpenOnStonesInRoom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Door.Switched" Collapsed="true">
+    <Position X="21" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEAAAAAAAACAAAIAAAAAAAIAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Models\Decorators\Door\Switched.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Door.Toggle" Collapsed="true">
+    <Position X="21" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEAAAAAAAACAAAIAAAAAAAIAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Models\Decorators\Door\Toggle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Decorators.Door.TogglePosition" Collapsed="true">
+    <Position X="23.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAEAAAAAAAAAAAIAAAAAAAAQ=</HashCode>
+      <FileName>Models\Decorators\Door\TogglePosition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Decorators.CollidableDecorator" Collapsed="true">
+    <Position X="25.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAABAQAAAAAQAAAAAIAAABAAAAA=</HashCode>
+      <FileName>Models\Decorators\CollidableDecorator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Decorators.DamageOnCollision" Collapsed="true">
+    <Position X="30" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Models\Decorators\DamageOnCollision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Decorators.PlayerPickupOnCollision" Collapsed="true">
+    <Position X="26.25" Y="6" Width="2" />
+    <InheritanceLine Type="TempleOfDoom.GameLogic.Models.Decorators.CollidableDecorator" ManuallyRouted="true">
+      <Path>
+        <Point X="26.25" Y="1.062" />
+        <Point X="26.25" Y="2.271" />
+        <Point X="27.25" Y="2.271" />
+        <Point X="27.25" Y="5.875" />
+        <Point X="27.25" Y="5.875" />
+        <Point X="27.25" Y="6" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Models\Decorators\PlayerPickupOnCollision.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Decorators.RemoveOnCollision" Collapsed="true">
+    <Position X="15.75" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAQAAA=</HashCode>
+      <FileName>Models\Decorators\RemoveOnCollision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.BaseCollidable" Collapsed="true">
+    <Position X="14.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAABAAAAAAAQAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Models\BaseCollidable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.BaseDoor" Collapsed="true">
+    <Position X="14.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAACAAAAAAAEAAAAAAAAAAAIgAAAAAAAA=</HashCode>
+      <FileName>Models\BaseDoor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.BoobyTrap" Collapsed="true">
+    <Position X="32.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BoobyTrap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.DisappearingBoobyTrap" Collapsed="true">
+    <Position X="32.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DisappearingBoobyTrap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Game" Collapsed="true">
+    <Position X="20.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Key" Collapsed="true">
+    <Position X="25.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Key.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Player" Collapsed="true">
+    <Position X="18" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAACAAAAAEAAAAgAAAAAAAAgBkCAgAEBAAAgAAAAwA=</HashCode>
+      <FileName>Models\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.PressurePlate" Collapsed="true">
+    <Position X="20.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAASAAAAAIAAAAAAAAg=</HashCode>
+      <FileName>Models\PressurePlate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Room" Collapsed="true">
+    <Position X="18" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAABACAAAAAAAAAAEAAAAQAgACQAACAAAAAAAA=</HashCode>
+      <FileName>Models\Room.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.SankaraStone" Collapsed="true">
+    <Position X="27.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SankaraStone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Models.Wall" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Wall.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Services.LocatableFactory">
+    <Position X="15.5" Y="8.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\LocatableFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.Services.Observable&lt;T&gt;" Collapsed="true">
+    <Position X="18" Y="11.25" Width="1.5" />
+    <NestedTypes>
+      <Class Name="TempleOfDoom.GameLogic.Services.Observable&lt;T&gt;.Unsubscriber" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\Observable.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAABAAAAAAAQAAAA=</HashCode>
+      <FileName>Services\Observable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TempleOfDoom.GameLogic.GameLoop" Collapsed="true">
+    <Position X="24.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAOAAIAABAAgAIAAAAAoEACAFAQAAAAAAAAAAAY=</HashCode>
+      <FileName>GameLoop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CODE_TempleOfDoom_DownloadableContent.Enemy" Collapsed="true">
+    <Position X="33.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="TempleOfDoom.GameLogic.Models.Interfaces.ICollidable" Collapsed="true">
+    <Position X="15.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\ICollidable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TempleOfDoom.GameLogic.Models.Interfaces.IDamageable" Collapsed="true">
+    <Position X="17.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\IDamageable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TempleOfDoom.GameLogic.Models.Interfaces.IDoor" Collapsed="true">
+    <Position X="15.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAACAAAAAAAEAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\IDoor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TempleOfDoom.GameLogic.Models.Interfaces.IHoldable" Collapsed="true">
+    <Position X="13.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\IHoldable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TempleOfDoom.GameLogic.Models.Interfaces.IInventory" Collapsed="true">
+    <Position X="17.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAgAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\IInventory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TempleOfDoom.GameLogic.Models.Interfaces.ILocatable" Collapsed="true">
+    <Position X="15.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\ILocatable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TempleOfDoom.GameLogic.Models.Interfaces.IWalkable" Collapsed="true">
+    <Position X="13.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\Interfaces\IWalkable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TempleOfDoom.GameLogic.Services.IInputReader" Collapsed="true">
+    <Position X="22.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Services\IInputReader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TempleOfDoom.GameLogic.Services.IRenderer" Collapsed="true">
+    <Position X="22.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\IRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="TempleOfDoom.GameLogic.Models.Interfaces.Direction" Collapsed="true">
+    <Position X="20.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
+      <FileName>Models\Interfaces\IWalkable.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TempleOfDoom.GameLogic.Services.GameAction" Collapsed="true">
+    <Position X="22.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAACAABAAAAAAAAAAAAAAAAAAIQAAAAAEAAQA=</HashCode>
+      <FileName>Services\IInputReader.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
