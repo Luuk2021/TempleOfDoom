@@ -1,4 +1,5 @@
 ﻿using CODE_TempleOfDoom_DownloadableContent;
+using System;
 using TempleOfDoom.GameLogic.Models.Decorators;
 using TempleOfDoom.GameLogic.Models.Interfaces;
 using TempleOfDoom.GameLogic.Services;
@@ -25,6 +26,18 @@ namespace TempleOfDoom.GameLogic.Models.Adapters
         private Observable<int> _healthObservable;
         private Observable<((int x, int y) oldPos, ILocatable)> _positionObservable;
 
+        public override Action<ICollidable> OnEnter
+        {
+            get => c =>
+            {
+                Wrapee.OnEnter(c);
+                if (c is Player p)
+                {
+                    p.TakeDamage(1);
+                }
+            };
+        }
+
         public EnemyAdapter(Enemy enemy) : base(new BaseCollidable((enemy.CurrentXLocation, enemy.CurrentYLocation)))
         {
             _adaptee = enemy;
@@ -34,6 +47,7 @@ namespace TempleOfDoom.GameLogic.Models.Adapters
         }
 
         public int Health => _adaptee.NumberOfLives;
+
         private (int x, int y) _oldPosition;
         public override (int x, int y) Position
         {
