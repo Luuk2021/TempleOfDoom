@@ -190,14 +190,9 @@ namespace TempleOfDoom.JsonGameParser
 
                 foreach (var property in properties)
                 {
-                    if (property.Name == nameof(item.type) || property.Name == nameof(item.x) || property.Name == nameof(item.y))
-                        continue;
-
+                    if (property.Name == nameof(item.type) || property.Name == nameof(item.x) || property.Name == nameof(item.y)) continue;
                     var value = property.GetValue(item);
-                    if (value != null && !IsDefaultValue(value))
-                    {
-                        arguments.Add(value);
-                    }
+                    if (value != null && !IsDefaultValue(value)) arguments.Add(value);
                 }
 
                 room.AddLocatable(_locatableFactory.CreateLocatable(name, arguments.ToArray()));
