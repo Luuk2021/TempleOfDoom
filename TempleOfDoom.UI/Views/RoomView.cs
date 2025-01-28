@@ -82,6 +82,7 @@ namespace TempleOfDoom.UI.Views
             AddTileView(tileView, value.locatable);
             _tileViews[value.locatable.Position].Values.OrderByDescending(t => t.Layer).First().Display();
         }
+
         public void OnNext((bool isAdded, ILocatable locatable) value)
         {
             if (value.isAdded)

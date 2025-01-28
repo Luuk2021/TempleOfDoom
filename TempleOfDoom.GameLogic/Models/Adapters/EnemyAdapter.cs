@@ -8,6 +8,18 @@ namespace TempleOfDoom.GameLogic.Models.Adapters
 {
     public abstract class EnemyAdapter : CollidableDecorator, IDamageable, IWalkable
     {
+        private class FieldAdapter : IField
+        {
+            public bool CanEnter => true;
+
+            public IPlacable Item { get; set; }
+
+            public IField GetNeighbour(int direction)
+            {
+                return null;
+            }
+        }
+
         private readonly Enemy _adaptee;
 
         private Observable<int> _healthObservable;
@@ -16,11 +28,23 @@ namespace TempleOfDoom.GameLogic.Models.Adapters
         public EnemyAdapter(Enemy enemy) : base(new BaseCollidable((enemy.CurrentXLocation, enemy.CurrentYLocation)))
         {
             _adaptee = enemy;
+            _adaptee.CurrentField = new FieldAdapter();
             _healthObservable = new Observable<int>();
             _positionObservable = new Observable<((int x, int y) oldPos, ILocatable)>();
         }
 
         public int Health => _adaptee.NumberOfLives;
+        private (int x, int y) _oldPosition;
+        public override (int x, int y) Position
+        {
+            get => base.Position;
+            set
+            {
+                _oldPosition = base.Position;
+                base.Position = value;
+                _positionObservable.Notify((_oldPosition, this));
+            }
+        }
 
         public IDisposable Subscribe(IObserver<int> observer)
         {
@@ -35,6 +59,7 @@ namespace TempleOfDoom.GameLogic.Models.Adapters
         public void TakeDamage(int damage)
         {
             _adaptee.DoDamage(damage);
+            _adaptee.CurrentField = new FieldAdapter();
             _healthObservable.Notify(_adaptee.NumberOfLives);
         }
 

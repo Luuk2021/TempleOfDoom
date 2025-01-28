@@ -1,4 +1,5 @@
 ﻿using TempleOfDoom.GameLogic.Models;
+using TempleOfDoom.GameLogic.Models.Adapters;
 using TempleOfDoom.GameLogic.Models.Decorators;
 using TempleOfDoom.GameLogic.Models.Door;
 using TempleOfDoom.GameLogic.Models.Interfaces;
@@ -33,8 +34,32 @@ namespace TempleOfDoom.GameLogic
                 { GameAction.MoveUp, () => _game.Player.TryMove(Direction.Up, _currentRoom.CanMoveTo) },
                 { GameAction.MoveDown, () => _game.Player.TryMove(Direction.Down, _currentRoom.CanMoveTo) },
                 { GameAction.MoveLeft, () => _game.Player.TryMove(Direction.Left, _currentRoom.CanMoveTo) },
-                { GameAction.MoveRight, () => _game.Player.TryMove(Direction.Right, _currentRoom.CanMoveTo) }
+                { GameAction.MoveRight, () => _game.Player.TryMove(Direction.Right, _currentRoom.CanMoveTo) },
+                { GameAction.Shoot, () => Shoot() }
             };
+        }
+
+        private void Shoot()
+        {
+            var playerPosition = _game.Player.Position;
+
+            var cardinalDirections = new (int x, int y)[]
+            {
+                (playerPosition.x, playerPosition.y - 1),
+                (playerPosition.x, playerPosition.y + 1),
+                (playerPosition.x - 1, playerPosition.y),
+                (playerPosition.x + 1, playerPosition.y)
+            };
+
+            var damageables = _currentRoom.GetLocatables().OfType<IDamageable>();
+
+            foreach (var damageable in damageables)
+            {
+                if (cardinalDirections.Any(dir => dir == damageable.Position))
+                {
+                    damageable.TakeDamage(1);
+                }
+            }
         }
 
         public void Run()
@@ -45,12 +70,28 @@ namespace TempleOfDoom.GameLogic
             while (_isRunning)
             {
                 var action = _inputReader.GetNextInput();
-                if (_actions.ContainsKey(action)) _actions[action]();
+                if (_actions.ContainsKey(action))
+                {
+                    _actions[action]();
+                    if (action != GameAction.None)
+                    {
+                        HandleEnemyMovement();
+                    }
+                }
 
                 HandleCollisionsWithPlayer();
-                HandleCollisionRemoves();
+                HandleRemoves();
                 HandleChangeRoom();
                 CheckIfGameEnding();
+            }
+        }
+
+        private void HandleEnemyMovement()
+        {
+            var enemies = _currentRoom.GetLocatables().OfType<EnemyAdapter>();
+            foreach (var enemy in enemies)
+            {
+                enemy.TryMove(Direction.Up, _currentRoom.CanMoveTo);
             }
         }
 
@@ -68,7 +109,7 @@ namespace TempleOfDoom.GameLogic
             }
         }
 
-        private void HandleCollisionRemoves()
+        private void HandleRemoves()
         {
             var toRemoves = _currentRoom.GetLocatables()
                 .OfType<ICollidable>()
@@ -80,6 +121,18 @@ namespace TempleOfDoom.GameLogic
                 _currentRoom.RemoveLocatable(toRemove);
                 _previousCollisions.Remove(toRemove);
             }
+
+            var toRemoveEnemeies = _currentRoom.GetLocatables()
+                .OfType<EnemyAdapter>()
+                .Where(e => e.Health <= 0)
+                .ToList();
+
+            foreach (var toRemove in toRemoveEnemeies)
+            {
+                _currentRoom.RemoveLocatable(toRemove);
+                _previousCollisions.Remove(toRemove);
+            }
+
         }
 
         private TDecorator? GetDecorator<TDecorator>(ICollidable collidable) where TDecorator : ICollidable
